@@ -1,0 +1,5 @@
+.idea/
+src/
+Fineract.iml
+master.sh
+migration.sh

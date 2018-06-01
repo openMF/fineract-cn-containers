@@ -1,0 +1,66 @@
+version: '3'
+services:
+  # eureka:
+  #   image: springcloud/eureka
+  #   container_name: eureka
+  #   ports:
+  #     - "8761:8761"
+  #   healthcheck:
+  #     test: curl --fail -s http://localhost:8761/ || exit 1
+  #     interval: 1m30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # activemq:
+  #   image: webcenter/activemq:5.14.3
+  #   container_name: activemq
+  #   ports:
+  #     - "61616:61616"
+  #   healthcheck:
+  #     test: curl --fail -s http://localhost:61616/ || exit 1
+  #     interval: 1m30s
+  #     timeout: 10s
+  #     retries: 3
+
+  # mariadb:
+  #   image: mariadb
+  #   container_name: mariadb
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=mysql
+  #   healthcheck:
+  #     test: mysql -uroot -pmysql
+  #     interval: 1m30s
+  #     timeout: 10s
+  #     retries: 3
+
+  cassandra:
+    image: cassandra
+    container_name: cassandra
+    ports:
+      - "127.0.0.1:9142:9042"
+    networks:
+      - webnet
+    healthcheck:
+      test: cqlsh
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  domain-ms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - webnet
+    depends_on:
+      # - eureka
+      # - activemq
+      # - mariadb
+      - cassandra
+    #command: sh './wait_for_db.sh' cassandra 9142 echo me
+    #command: ["sh", "-c", "wait_for_db.sh", "cassandra", "9142", "java", "-jar", "customer-service-boot-0.1.0-BUILD-SNAPSHOT.jar"]
+
+  networks:
+    webnet:
