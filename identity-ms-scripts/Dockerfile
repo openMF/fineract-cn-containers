@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ARG customer_port=2024
+ARG identity_port=2021
 
 ENV server.max-http-header-size=16384 \
     bonecp.partitionCount=1 \
@@ -39,9 +39,9 @@ ENV server.max-http-header-size=16384 \
     system.initialclientid=service-runner
 
 WORKDIR /tmp
-COPY customer-service-boot-0.1.0-BUILD-SNAPSHOT.jar .
-ENV spring.application.name="customer-v1" \
-    server.port=$customer_port \
-    server.contextPath="/customer-v1"
+COPY identity-service-boot-0.1.0-BUILD-SNAPSHOT.jar .
+ENV spring.application.name="identity-v1" \
+    server.port=$identity_port \
+    server.contextPath="/identity-v1"
 
-CMD ["java", "-jar", "customer-service-boot-0.1.0-BUILD-SNAPSHOT.jar"]
+CMD ["java", "-jar", "identity-service-boot-0.1.0-BUILD-SNAPSHOT.jar"]
