@@ -1,91 +1,87 @@
 version: '3'
 services:
-  eureka:
-    image: springcloud/eureka
-    container_name: eureka
-    ports:
-      - "8761:8761"
-    environment:
-      - server_port=8761
-      - security_basic_enabled=false
-      - error_whitelabel_enabled=false
-      - eureka_instance_leaseRenewalIntervalInSeconds=30
-      - eureka_server_responseCacheUpdateIntervalMs=50
-      - eureka_instance_hostname=localhost
-      - eureka_client_registerWithEureka=false
-      - eureka_client_fetchRegistry=false
-      - eureka_serviceUrl_defaultZone=http://localhost:8761/eureka
+  provisioner-ms:
+    build:
+      context: ./provisioner-ms-scripts
+      dockerfile: Dockerfile
+    container_name: provisioner-ms
     networks:
-      app_net:
-        ipv4_address: 172.16.238.2
-    healthcheck:
-      test: curl --fail -s http://172.16.238.2:8761/ || exit 1
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
-  activemq:
-    image: webcenter/activemq:5.14.3
-    container_name: activemq
-    ports:
-      - "61616:61616"
+      default:
+        ipv4_address: 172.16.238.6
+  identity-ms:
+    build:
+      context: ./identity-ms-scripts
+      dockerfile: Dockerfile
+    container_name: identity-ms
     networks:
-      app_net:
-        ipv4_address: 172.16.238.3
-    healthcheck:
-      test: curl --fail -s http://172.16.238.3:61616/ || exit 1
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
-  mariadb:
-    image: mariadb
-    container_name: mariadb
-    ports:
-      - "3306:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=mysql
+      default:
+        ipv4_address: 172.16.238.7
+  rhythm-ms:
+    build:
+      context: ./rhythm-ms-scripts
+      dockerfile: Dockerfile
+    container_name: rhythm-ms
     networks:
-      app_net:
-        ipv4_address: 172.16.238.4
-    healthcheck:
-      test: mysql -uroot -pmysql
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
-  cassandra:
-    image: cassandra
-    container_name: cassandra
-    ports:
-      - "9142:9042"
+      default:
+        ipv4_address: 172.16.238.8
+  office-ms:
+    build:
+      context: ./office-ms-scripts
+      dockerfile: Dockerfile
+    container_name: office-ms
     networks:
-      app_net:
-        ipv4_address: 172.16.238.5
-    healthcheck:
-      test: cqlsh
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-
-  # customer-ms:
-  #   build:
-  #     context: ./customer-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: customer-ms
-  #   networks:
-  #     app_net:
-  #       ipv4_address: 172.16.238.6
-  #   depends_on:
-  #     - eureka
-  #     - activemq
-  #     - mariadb
-  #     - cassandra
+      default:
+        ipv4_address: 172.16.238.9
+  customer-ms:
+    build:
+      context: ./customer-ms-scripts
+      dockerfile: Dockerfile
+    container_name: customer-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.10
+  portfolio-ms:
+    build:
+      context: ./portfolio-ms-scripts
+      dockerfile: Dockerfile
+    container_name: portfolio-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.11
+  deposit-account-management-ms:
+    build:
+      context: ./deposit-account-management-ms-scripts
+      dockerfile: Dockerfile
+    container_name: deposit-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.12
+  teller-ms:
+    build:
+      context: ./teller-ms-scripts
+      dockerfile: Dockerfile
+    container_name: teller-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.13
+  report-ms:
+    build:
+      context: ./reporting-ms-scripts
+      dockerfile: Dockerfile
+    container_name: report-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.14
+  payroll-ms:
+    build:
+      context: ./payroll-ms-scripts
+      dockerfile: Dockerfile
+    container_name: payroll-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.15
 
 networks:
-  app_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
+  default:
+    external:
+      name: externaltools_app_net

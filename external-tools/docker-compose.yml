@@ -1,0 +1,77 @@
+version: "3"
+services:
+  eureka:
+    image: springcloud/eureka
+    container_name: eureka
+    ports:
+      - "8761:8761"
+    environment:
+      - server_port=8761
+      - security_basic_enabled=false
+      - error_whitelabel_enabled=false
+      - eureka_instance_leaseRenewalIntervalInSeconds=30
+      - eureka_server_responseCacheUpdateIntervalMs=50
+      - eureka_instance_hostname=localhost
+      - eureka_client_registerWithEureka=false
+      - eureka_client_fetchRegistry=false
+      - eureka_serviceUrl_defaultZone=http://localhost:8761/eureka
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.2
+    healthcheck:
+      test: curl --fail -s http://172.16.238.2:8761/ || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  activemq:
+    image: webcenter/activemq:5.14.3
+    container_name: activemq
+    ports:
+      - "61616:61616"
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.3
+    healthcheck:
+      test: curl --fail -s http://172.16.238.3:61616/ || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.4
+    healthcheck:
+      test: mysql -uroot -pmysql
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+  cassandra:
+    image: cassandra
+    container_name: cassandra
+    ports:
+      - "9142:9042"
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.5
+    healthcheck:
+      test: cqlsh
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
