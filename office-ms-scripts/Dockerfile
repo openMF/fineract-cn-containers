@@ -36,7 +36,8 @@ ENV server.max-http-header-size=16384 \
     eureka.client.instanceInfoReplicationIntervalSeconds=1 \
     activemq.brokerUrl=http://172.16.238.3:61616 \
     ribbon.eureka.enabled=true \
-    system.initialclientid=service-runner
+    system.initialclientid=service-runner \
+    spring.profiles.active=production
 
 WORKDIR /tmp
 COPY office-service-boot-0.1.0-BUILD-SNAPSHOT.jar .

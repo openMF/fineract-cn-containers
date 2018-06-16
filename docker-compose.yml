@@ -40,46 +40,46 @@ services:
     networks:
       default:
         ipv4_address: 172.16.238.10
-  portfolio-ms:
-    build:
-      context: ./portfolio-ms-scripts
-      dockerfile: Dockerfile
-    container_name: portfolio-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.11
-  deposit-account-management-ms:
-    build:
-      context: ./deposit-account-management-ms-scripts
-      dockerfile: Dockerfile
-    container_name: deposit-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.12
-  teller-ms:
-    build:
-      context: ./teller-ms-scripts
-      dockerfile: Dockerfile
-    container_name: teller-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.13
-  report-ms:
-    build:
-      context: ./reporting-ms-scripts
-      dockerfile: Dockerfile
-    container_name: report-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.14
-  payroll-ms:
-    build:
-      context: ./payroll-ms-scripts
-      dockerfile: Dockerfile
-    container_name: payroll-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.15
+  # portfolio-ms:
+  #   build:
+  #     context: ./portfolio-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: portfolio-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.11
+  # deposit-account-management-ms:
+  #   build:
+  #     context: ./deposit-account-management-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: deposit-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.12
+  # teller-ms:
+  #   build:
+  #     context: ./teller-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: teller-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.13
+  # report-ms:
+  #   build:
+  #     context: ./reporting-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: report-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.14
+  # payroll-ms:
+  #   build:
+  #     context: ./payroll-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: payroll-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.15
 
 networks:
   default:
