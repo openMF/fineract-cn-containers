@@ -1,13 +1,13 @@
 version: '3'
 services:
-  provisioner-ms:
-    build:
-      context: ./provisioner-ms-scripts
-      dockerfile: Dockerfile
-    container_name: provisioner-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.6
+  # provisioner-ms:
+  #   build:
+  #     context: ./provisioner-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: provisioner-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.6
   identity-ms:
     build:
       context: ./identity-ms-scripts
@@ -16,30 +16,30 @@ services:
     networks:
       default:
         ipv4_address: 172.16.238.7
-  rhythm-ms:
-    build:
-      context: ./rhythm-ms-scripts
-      dockerfile: Dockerfile
-    container_name: rhythm-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.8
-  office-ms:
-    build:
-      context: ./office-ms-scripts
-      dockerfile: Dockerfile
-    container_name: office-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.9
-  customer-ms:
-    build:
-      context: ./customer-ms-scripts
-      dockerfile: Dockerfile
-    container_name: customer-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.10
+  # rhythm-ms:
+  #   build:
+  #     context: ./rhythm-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: rhythm-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.8
+  # office-ms:
+  #   build:
+  #     context: ./office-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: office-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.9
+  # customer-ms:
+  #   build:
+  #     context: ./customer-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: customer-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.10
   # portfolio-ms:
   #   build:
   #     context: ./portfolio-ms-scripts
