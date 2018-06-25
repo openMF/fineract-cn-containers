@@ -3,34 +3,26 @@ services:
   activemq:
     image: rmohr/activemq:5.14.5
     container_name: activemq
+    restart: always
     ports:
       - "61616:61616"
       - "8161:8161"
+    environment:
+      ACTIVEMQ_CONFIG_MINMEMORY: 512
+      ACTIVEMQ_CONFIG_MAXMEMORY: 1024
+    healthcheck:
+      test: curl -u admin:admin -s http://172.16.238.3:8161/admins
+      interval: 5s
+      retries: 20
     networks:
       app_net:
         ipv4_address: 172.16.238.3
-    # healthcheck:
-    #   test: curl --fail -s http://172.16.238.3:61616/ || exit 1
-    #   interval: 1m30s
-    #   timeout: 10s
-    #   retries: 3
 
   eureka:
-    image: springcloud/eureka
+    build: ../eureka_server
     container_name: eureka
-    hostname: eureka
     ports:
       - "8761:8761"
-    environment:
-      - server_port=8761
-      - security_basic_enabled=false
-      - error_whitelabel_enabled=false
-      - eureka_instance_leaseRenewalIntervalInSeconds=30
-      - eureka_server_responseCacheUpdateIntervalMs=50
-      - eureka_instance_hostname=eureka
-      - eureka_client_registerWithEureka=false
-      - eureka_client_fetchRegistry=false
-      - eureka_serviceUrl_defaultZone=http://eureka:8761/eureka
     networks:
       app_net:
         ipv4_address: 172.16.238.2
@@ -42,28 +34,26 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
+    healthcheck:
+      test: mysql --user=root --password=mysql ping -h 172.16.238.4
+      interval: 5s
+      retries: 20
     networks:
       app_net:
         ipv4_address: 172.16.238.4
-    healthcheck:
-      test: mysql -uroot -pmysql
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
 
   cassandra:
     image: cassandra
     container_name: cassandra
     ports:
       - "9142:9042"
+    healthcheck:
+      test: cqlsh ping -h 172.16.238.5
+      interval: 5s
+      retries: 20
     networks:
       app_net:
         ipv4_address: 172.16.238.5
-    healthcheck:
-      test: cqlsh
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
 
 networks:
   app_net:
