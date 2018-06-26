@@ -1,13 +1,13 @@
 version: '3'
 services:
-  # provisioner-ms:
-  #   build:
-  #     context: ./provisioner-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: provisioner-ms
-  #   networks:
-  #     default:
-  #       ipv4_address: 172.16.238.6
+  provisioner-ms:
+    build:
+      context: ./provisioner-ms-scripts
+      dockerfile: Dockerfile
+    container_name: provisioner-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.6
   identity-ms:
     build:
       context: ./identity-ms-scripts
