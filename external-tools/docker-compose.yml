@@ -11,7 +11,7 @@ services:
       ACTIVEMQ_CONFIG_MINMEMORY: 512
       ACTIVEMQ_CONFIG_MAXMEMORY: 1024
     healthcheck:
-      test: curl -u admin:admin -s http://172.16.238.3:8161/admins
+      test: curl -u admin:admin -s http://172.16.238.3:8161/admin
       interval: 5s
       retries: 20
     networks:
