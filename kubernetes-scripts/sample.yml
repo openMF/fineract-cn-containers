@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mypvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleepypod
+spec:
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mypvc
+  containers:
+  - name: sleepycontainer
+    image: gcr.io/google_containers/busybox
+    command:
+      - sleep
+      - "6000"
+    volumeMounts:
+      - name: data
+        mountPath: /data
+        readOnly: false

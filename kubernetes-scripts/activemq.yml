@@ -7,9 +7,9 @@ spec:
   selector:
     app: activemq
   ports:
-  - port: 8161
+  - port: 61616
     protocol: TCP
-    targetPort: 8161
+    targetPort: 61616
   type: LoadBalancer
 
 ---
@@ -36,14 +36,9 @@ spec:
     spec:
       containers:
         - image: docker.io/rmohr/activemq:5.14.5
-        # - image: rmohr/activemq:5.14.5
           #imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           name: activemq
-          livenessProbe:
-            httpGet:
-              path: /admin
-              port: 8161
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
-            periodSeconds: 10
-            failureThreshold: 3
+          ports:
+            - containerPort: 61616
+            - containerPort: 8161
