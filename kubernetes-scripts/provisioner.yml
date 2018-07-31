@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: customer-service
+  name: provisioner-service
   namespace: default
 spec:
   selector:
-    app: customer-ms
+    app: provisioner-ms
   ports:
-    - port: 2024
-      targetPort: 2024
+    - port: 2020
+      targetPort: 2020
   type: LoadBalancer
 
 ---
@@ -16,13 +16,13 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: customer-ms-cluster
+  name: provisioner-ms-cluster
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: customer-ms
+      app: provisioner-ms
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -31,11 +31,11 @@ spec:
   template:
     metadata:
       labels:
-        app: customer-ms
+        app: provisioner-ms
     spec:
       containers:
       - name: myapp
-        image: docker.io/anh3h/customer-ms
+        image: docker.io/anh3h/provisioner-ms
         imagePullPolicy: IfNotPresent
         env:
           - name: eureka.instance.hostname
@@ -51,4 +51,4 @@ spec:
           - name: mariadb.host
             value: 35.237.151.82
         ports:
-          - containerPort: 2024
+          - containerPort: 2020
