@@ -8,5 +8,8 @@ Ensure the artifacts are located in $USER_HOME/.m2/repository/org/apache/finerac
 
 ## Procedue
 1. Run migration_script.sh
-2. Run the wait_for_db.sh
-3. Run Dockerfile
+    `bash migration_script.sh`
+2. Run the start-up.sh script to start the microservices
+    `bash start-up.sh`
+3. Run the shut-down.sh script to shut-down the microservices
+    `bash shut-down.sh`
