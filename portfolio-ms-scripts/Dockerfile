@@ -35,6 +35,7 @@ ENV server.max-http-header-size=16384 \
     eureka.client.instanceInfoReplicationIntervalSeconds=1 \
     activemq.brokerUrl=tcp://172.16.238.3:61616 \
     ribbon.eureka.enabled=true \
+    portfolio.bookLateFeesAndInterestAsUser=imhotep \
     system.initialclientid=service-runner
 
 WORKDIR /tmp

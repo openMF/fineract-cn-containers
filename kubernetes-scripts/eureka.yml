@@ -41,11 +41,11 @@ spec:
           ports:
             - containerPort: 8761
               name: http
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8761
-            initialDelaySeconds: 10
-            timeoutSeconds: 1
-            periodSeconds: 10
-            failureThreshold: 3
+#          livenessProbe:
+#            httpGet:
+#              path: /
+#              port: 8761
+            # initialDelaySeconds: 10
+            # timeoutSeconds: 1
+            # periodSeconds: 10
+            # failureThreshold: 3

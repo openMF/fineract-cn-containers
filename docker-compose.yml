@@ -8,14 +8,14 @@ services:
     networks:
       default:
         ipv4_address: 172.16.238.6
-  identity-ms:
-    build:
-      context: ./identity-ms-scripts
-      dockerfile: Dockerfile
-    container_name: identity-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.7
+  # identity-ms:
+  #   build:
+  #     context: ./identity-ms-scripts
+  #     dockerfile: Dockerfile
+  #   container_name: identity-ms
+  #   networks:
+  #     default:
+  #       ipv4_address: 172.16.238.7
   # rhythm-ms:
   #   build:
   #     context: ./rhythm-ms-scripts
@@ -32,14 +32,14 @@ services:
   #   networks:
   #     default:
   #       ipv4_address: 172.16.238.9
-  # customer-ms:
-  #   build:
-  #     context: ./customer-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: customer-ms
-  #   networks:
-  #     default:
-  #       ipv4_address: 172.16.238.10
+  customer-ms:
+    build:
+      context: ./customer-ms-scripts
+      dockerfile: Dockerfile
+    container_name: customer-ms
+    networks:
+      default:
+        ipv4_address: 172.16.238.10
   # portfolio-ms:
   #   build:
   #     context: ./portfolio-ms-scripts

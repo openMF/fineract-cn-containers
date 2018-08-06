@@ -39,16 +39,16 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
           - name: eureka.instance.hostname
-            value: 35.196.163.175
+            value: 35.231.169.122
           - name: ribbon.listOfServers
-            value: 35.196.163.175:9090
+            value: 35.231.169.122:9090
           - name: eureka.client.serviceUrl.defaultZone
-            value: http://35.196.163.175:8761/eureka
+            value: http://35.231.169.122:8761/eureka
           - name: activemq.brokerUrl
-            value: tcp://35.231.130.203:61616
+            value: tcp://35.227.125.206:61616
           - name: cassandra.contactPoints
-            value: 35.227.125.206:9042
+            value: 35.237.151.82:9042
           - name: mariadb.host
-            value: 35.237.151.82
+            value: 35.229.63.46
         ports:
           - containerPort: 2020

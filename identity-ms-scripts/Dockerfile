@@ -35,6 +35,7 @@ ENV server.max-http-header-size=16384 \
     activemq.brokerUrl=tcp://172.16.238.3:61616 \
     ribbon.eureka.enabled=true \
     system.initialclientid=service-runner \
+    identity.token.refresh.secureCookie=false \
     spring.profiles.active=production
 
 WORKDIR /tmp

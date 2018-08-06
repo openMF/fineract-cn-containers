@@ -37,6 +37,8 @@ ENV server.max-http-header-size=16384 \
     activemq.brokerUrl=tcp://172.16.238.3:61616 \
     ribbon.eureka.enabled=true \
     system.initialclientid=service-runner \
+    rhythm.beatCheckRate=10 \
+    rhythm.user=imhotep \
     spring.profiles.active=production
 
 WORKDIR /tmp
