@@ -1,49 +1,57 @@
 echo "Authenticating super user account"
 token=$( curl -X POST -H "Content-Type: application/json" \
-        'http://35.237.47.18:2020/provisioner-v1/auth/token?grant_type=password&client_id=service-runner&username=wepemnefret&password=oS/0IiAME/2unkN1momDrhAdNKOhGykYFH/mJN20' \
+        'http://35.202.57.59:2020/provisioner-v1/auth/token?grant_type=password&client_id=service-runner&username=wepemnefret&password=oS/0IiAME/2unkN1momDrhAdNKOhGykYFH/mJN20' \
          | jq --raw-output '.token' )
+
+echo ""
+echo ""
+echo "Creating Microservice application via Provision MS"
+curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+    --data '{ "name": "identity-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.239.63.41:2021/identity-v1" }' \
+     http://35.202.57.59:2020/provisioner-v1/applications
+curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+    --data '{ "name": "rhythm-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2022/rhythm-v1" }' \
+     http://35.202.57.59:2020/provisioner-v1/applications
+# # curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "office-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2023/office-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "customer-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2024/customer-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "ledger-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2025/ledger-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "portfolio-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2025/portfolio-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "deposit-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2026/deposit-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "teller-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2027/teller-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "report-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2028/report-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "cheque-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/cheque-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "payroll-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2029/payroll-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+#     --data '{ "name": "group-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/group-v1" }' \
+#      http://35.229.63.46:2020/provisioner-v1/applications
+
 # echo ""
-# echo "Creating Microservice application via Provision MS"
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "identity-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "rhythm-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "office-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "customer-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "ledger-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "portfolio-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "deposit-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "teller-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "report-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "cheque-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "payroll-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
-#     --data '{ "name": "group-v1", "description": "", "vendor": "Apache Fineract", "homepage": "http://35.231.130.203:2020/provisioner-v1" }' \
-#      http://35.237.47.18:2020/provisioner-v1/applications
+# echo ""
+# echo "Deleting microservice"
+# curl -X delete -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" http://35.202.57.59:2020/provisioner-v1/applications/identity-v1
 
-# echo "List of existing microservice applications"
-# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" http://35.237.47.18:2020/provisioner-v1/applications | jq '.'
+echo "List of existing microservice applications"
+curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" http://35.202.57.59:2020/provisioner-v1/applications | jq '.'
 
+echo ""
 echo ""
 echo "Creating Tenants via Provision MS"
 curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
@@ -53,7 +61,7 @@ curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorizatio
 	"description": "All in one Demo Server",
 	"cassandraConnectionInfo": {
 		"clusterName": "Test Cluster",
-		"contactPoints": "35.237.151.82:9042",
+		"contactPoints": "35.192.186.138:9042",
 		"keyspace": "playground",
 		"replicationType": "Simple",
 		"replicas": "3"
@@ -61,12 +69,74 @@ curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorizatio
 	"databaseConnectionInfo": {
 		"driverClass": "org.mariadb.jdbc.Driver",
 		"databaseName": "playground",
-		"host": "35.229.63.46",
+		"host": "35.224.33.201",
 		"port": "3306",
 		"user": "root",
 		"password": "mysql"
 	}}' \
-     http://35.237.47.18:2020/provisioner-v1/tenants
+     http://35.202.57.59:2020/provisioner-v1/tenants
 
 echo "List of existing tenants"
-curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" http://35.237.47.18:2020/provisioner-v1/tenants | jq '.'
+curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" http://35.202.57.59:2020/provisioner-v1/tenants | jq '.'
+
+echo ""
+echo ""
+echo "Assign identity microservice for tenant"
+adminPassword=$( curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+	--data '{ "name": "identity-v1" }' \
+	http://35.202.57.59:2020/provisioner-v1/tenants/playground/identityservice | jq --raw-output '.adminPassword')
+
+# Dont see the use of the below statement
+# curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" -H "X-Tenant-Identifier: playground" http://35.202.57.59:2020/provisioner-v1/tenants/playground/applications | jq '.'
+
+echo ""
+echo ""
+echo "Authenticate as an administrator"
+accessToken=$( curl -X POST -H "Content-Type: application/json" -H "User: guest" -H "X-Tenant-Identifier: playground" \
+       "http://35.239.63.41:2021/identity-v1/token?grant_type=password&username=antony&password=${adminPassword}" \
+         | jq --raw-output '.accessToken' )
+
+echo ""
+echo "Create scheduler permission"
+curl -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${accessToken}" -H "X-Tenant-Identifier: playground" \
+        --data '{
+                "identifier": "scheduler",
+                "permissions": [
+                        {
+                                "permittableEndpointGroupIdentifier": "identity__v1__app_self",
+                                "allowedOperations": ["CHANGE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "portfolio__v1__khepri",
+                                "allowedOperations": ["CHANGE"]
+                        }
+                ]
+        }' \
+        http://35.239.63.41:2021/identity-v1/roles
+
+echo ""
+echo "Create scheduler user"
+curl -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${accessToken}" -H "X-Tenant-Identifier: playground" \
+        --data '{
+                "identifier": "imhotep",
+                "password": "p4ssw0rd",
+                "role": "scheduler"
+        }' \
+        http://35.239.63.41:2021/identity-v1/users | jq '.'
+
+echo ""
+echo ""
+echo "Authenticate as the newly created scheduler user so as to enable the user's account"
+tempAccessToken=$( curl -X POST -H "Content-Type: application/json" -H "User: guest" -H "X-Tenant-Identifier: playground" \
+       'http://35.239.63.41:2021/identity-v1/token?grant_type=password&username=imhotep&password=p4ssw0rd' \
+         | jq --raw-output '.accessToken' )
+
+curl -X PUT -H "Content-Type: application/json" -H "User: imhotep" -H "Authorization: ${tempAccessToken}" -H "X-Tenant-Identifier: playground" \
+        --data '{
+                "password": "p4ssw0rd"
+        }' \
+        http://35.239.63.41:2021/identity-v1/users/imhotep/password | jq '.'
+
+
+echo ""
+curl -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${accessToken}" -H "X-Tenant-Identifier: playground" http://35.239.63.41:2021/identity-v1/users | jq '.'

@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity-service
+  namespace: default
+spec:
+  selector:
+    app: identity-ms
+  ports:
+    - port: 2021
+      targetPort: 2021
+  type: LoadBalancer
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: identity-ms-cluster
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identity-ms
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: identity-ms
+    spec:
+      containers:
+      - name: myapp
+        image: docker.io/anh3h/identity-ms
+        imagePullPolicy: Always
+        env:
+          - name: eureka.instance.hostname
+            value: 35.194.61.47
+          - name: ribbon.listOfServers
+            value: 35.194.61.47:9090
+          - name: eureka.client.serviceUrl.defaultZone
+            value: http://35.194.61.47:8761/eureka
+          - name: activemq.brokerUrl
+            value: tcp://35.188.59.246:61616
+          - name: cassandra.contactPoints
+            value: 35.192.186.138:9042
+          - name: mariadb.host
+            value: 35.224.33.201
+          - name: system.publicKey.timestamp
+            value: 2018-09-25T03_31_48
+          - name: system.publicKey.modulus
+            value: "17318007762202276915667781209840284241720502707521873078897505356138539383363050049667785138353485988207634647603188455336356425002849760281049240791476283942497160184775797971723519829903627967481361379054447959291649289057756603579576792654752639713561637781944789557030934756137133197066405169971699156642941128638988408730741608813413507008146153853427551648252129508313718401750574588730639392661484581481667612606514906545379914299119012278873059875167157788525230442044206536668591517665262097071112361699974092567361081634436230322305603628346761177821595272443570075328903137181224797586174954037775119011659"
+          - name: system.publicKey.exponent
+            value: "65537"
+        ports:
+          - containerPort: 2021
