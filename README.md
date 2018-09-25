@@ -21,7 +21,7 @@ Ensure the artifacts are located in $USER_HOME/.m2/repository/org/apache/finerac
 2. Run the shut-down.sh script to shut-down the microservices
     `bash shut-down.sh`
     
-** Using Kubernetes**
+**- Using Kubernetes**
 1. Change directory into the kubernetes-script directory
     `cd kubernetes-scripts`
 2. Run the external tools first, i.e Activemq, Eureka, Cassandra, Maria DB
