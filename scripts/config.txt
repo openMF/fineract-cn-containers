@@ -1,0 +1,6 @@
+provisioner-ip=172.16.238.6
+office-ms-name=office-v1
+office-ms-description=
+office-ms-vendor=Apache Fineract
+office-ip=35.231.130.203
+# http://35.231.130.203:2023/office-v1
