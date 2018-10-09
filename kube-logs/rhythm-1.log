@@ -1,0 +1,387 @@
+16:18:59.639 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@7dc5e7b4: startup date [Mon Oct 08 16:18:59 GMT 2018]; root of context hierarchy
+16:19:01.776 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+16:19:02.158 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'configurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e5cae187] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:02.538 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.3.0.Final
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.1.RELEASE)
+
+16:19:05.658 [main] INFO  o.a.f.c.r.service.RhythmApplication - The following profiles are active: production
+16:19:07.140 [main] INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@13c27452: startup date [Mon Oct 08 16:19:07 GMT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7dc5e7b4
+16:19:16.575 [main] WARN  o.s.c.a.ConfigurationClassPostProcessor - Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+16:19:17.545 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=f8cdb769-5253-3c28-b428-8e75a1679d84
+16:19:17.648 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+16:19:17.786 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.fineract.cn.rhythm.service.internal.identity.ApplicationPermissionRequestCreator' of type [class org.springframework.cloud.netflix.feign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:17.825 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.fineract.cn.async.config.AsyncProcessingJavaConfiguration' of type [class org.apache.fineract.cn.async.config.AsyncProcessingJavaConfiguration$$EnhancerBySpringCGLIB$$eb67ac9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:17.859 [main] INFO  o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService
+16:19:18.167 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.apache.fineract.cn.mariadb.config.MariaDBJavaConfiguration' of type [class org.apache.fineract.cn.mariadb.config.MariaDBJavaConfiguration$$EnhancerBySpringCGLIB$$46adaf3c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:18.693 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c9b0de8a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:18.905 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$e5cae187] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+16:19:20.410 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @31408ms
+16:19:20.962 [main] INFO  o.s.b.c.e.j.JettyEmbeddedServletContainerFactory - Server initialized with port: 2022
+16:19:21.004 [main] INFO  org.eclipse.jetty.server.Server - jetty-9.3.11.v20160721
+16:19:21.701 [main] INFO  o.s.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 14561 ms
+16:19:29.534 [main] INFO  c.datastax.driver.core.ClockFactory - Using native clock to generate timestamps.
+16:19:32.013 [main] WARN  com.datastax.driver.core.NettyUtil - Found Netty's native epoll transport in the classpath, but epoll is not available. Using NIO instead.
+java.lang.UnsatisfiedLinkError: no netty-transport-native-epoll in java.library.path
+	at java.lang.ClassLoader.loadLibrary(ClassLoader.java:1867)
+	at java.lang.Runtime.loadLibrary0(Runtime.java:870)
+	at java.lang.System.loadLibrary(System.java:1122)
+	at io.netty.util.internal.NativeLibraryLoader.load(NativeLibraryLoader.java:189)
+	at io.netty.channel.epoll.Native.<clinit>(Native.java:49)
+	at io.netty.channel.epoll.Epoll.<clinit>(Epoll.java:30)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:264)
+	at com.datastax.driver.core.NettyUtil.<clinit>(NettyUtil.java:68)
+	at com.datastax.driver.core.NettyOptions.eventLoopGroup(NettyOptions.java:99)
+	at com.datastax.driver.core.Connection$Factory.<init>(Connection.java:769)
+	at com.datastax.driver.core.Cluster$Manager.init(Cluster.java:1400)
+	at com.datastax.driver.core.Cluster.init(Cluster.java:159)
+	at com.datastax.driver.core.Cluster.connectAsync(Cluster.java:330)
+	at com.datastax.driver.core.Cluster.connect(Cluster.java:280)
+	at org.apache.fineract.cn.cassandra.core.CassandraSessionProvider.lambda$getSession$2(CassandraSessionProvider.java:150)
+	at java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1660)
+	at org.apache.fineract.cn.cassandra.core.CassandraSessionProvider.getSession(CassandraSessionProvider.java:143)
+	at org.apache.fineract.cn.cassandra.core.CassandraSessionProvider.getAdminSession(CassandraSessionProvider.java:94)
+	at org.apache.fineract.cn.cassandra.core.CassandraSessionProvider.touchAdminSession(CassandraSessionProvider.java:193)
+	at org.apache.fineract.cn.cassandra.config.CassandraConnectorConfiguration.cassandraSessionProvider(CassandraConnectorConfiguration.java:69)
+	at org.apache.fineract.cn.cassandra.config.CassandraConnectorConfiguration$$EnhancerBySpringCGLIB$$cc69a6ff.CGLIB$cassandraSessionProvider$1(<generated>)
+	at org.apache.fineract.cn.cassandra.config.CassandraConnectorConfiguration$$EnhancerBySpringCGLIB$$cc69a6ff$$FastClassBySpringCGLIB$$a9e82c41.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at org.apache.fineract.cn.cassandra.config.CassandraConnectorConfiguration$$EnhancerBySpringCGLIB$$cc69a6ff.cassandraSessionProvider(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:207)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1056)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:189)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1148)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1051)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:207)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1056)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:189)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1148)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1051)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:207)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1056)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:835)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:741)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:189)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1148)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1051)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:207)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1056)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:640)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:349)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:543)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:233)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:214)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:90)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:78)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.getServletContextInitializerBeans(EmbeddedWebApplicationContext.java:241)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.selfInitialize(EmbeddedWebApplicationContext.java:228)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.access$000(EmbeddedWebApplicationContext.java:89)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext$1.onStartup(EmbeddedWebApplicationContext.java:213)
+	at org.springframework.boot.context.embedded.jetty.ServletContextInitializerConfiguration$Initializer.callInitializers(ServletContextInitializerConfiguration.java:83)
+	at org.springframework.boot.context.embedded.jetty.ServletContextInitializerConfiguration$Initializer.doStart(ServletContextInitializerConfiguration.java:72)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:106)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.handler.ScopedHandler.doStart(ScopedHandler.java:120)
+	at org.eclipse.jetty.server.handler.ContextHandler.startContext(ContextHandler.java:809)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:345)
+	at org.eclipse.jetty.webapp.WebAppContext.startWebapp(WebAppContext.java:1404)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1366)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:778)
+	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:262)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:520)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:132)
+	at org.eclipse.jetty.server.Server.start(Server.java:411)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:106)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:61)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:378)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+	at org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer.initialize(JettyEmbeddedServletContainer.java:91)
+	at org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainer.<init>(JettyEmbeddedServletContainer.java:79)
+	at org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory.getJettyEmbeddedServletContainer(JettyEmbeddedServletContainerFactory.java:540)
+	at org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory.getEmbeddedServletContainer(JettyEmbeddedServletContainerFactory.java:185)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.createEmbeddedServletContainer(EmbeddedWebApplicationContext.java:164)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.onRefresh(EmbeddedWebApplicationContext.java:134)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:535)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:371)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1186)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1175)
+	at org.apache.fineract.cn.rhythm.service.RhythmApplication.main(RhythmApplication.java:34)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:58)
+16:19:35.914 [main] INFO  c.d.d.c.p.DCAwareRoundRobinPolicy - Using data-center name 'datacenter1' for DCAwareRoundRobinPolicy (if this is incorrect, please provide the correct datacenter name with DCAwareRoundRobinPolicy constructor)
+16:19:35.927 [main] INFO  com.datastax.driver.core.Cluster - New Cassandra host /172.16.238.5:9042 added
+16:19:39.625 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'metaPU'
+16:19:39.901 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [
+	name: metaPU
+	...]
+16:19:41.155 [main] INFO  org.hibernate.Version - HHH000412: Hibernate Core {5.0.11.Final}
+16:19:41.161 [main] INFO  org.hibernate.cfg.Environment - HHH000206: hibernate.properties not found
+16:19:41.217 [main] INFO  org.hibernate.cfg.Environment - HHH000021: Bytecode provider name : javassist
+16:19:42.142 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+16:19:46.212 [main] WARN  com.jolbox.bonecp.BoneCPConfig - JDBC username not set in driver properties, copying it from pool config
+16:19:46.212 [main] WARN  com.jolbox.bonecp.BoneCPConfig - JDBC password not set in driver properties, copying it from pool config
+16:19:47.457 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+16:19:51.476 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'metaPU'
+16:19:54.922 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/clockoffset],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.rhythm.api.v1.domain.ClockOffset> org.apache.fineract.cn.rhythm.service.rest.ClockOffsetRestController.getClockOffset(java.lang.String)
+16:19:54.928 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/clockoffset],methods=[PUT],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.rhythm.service.rest.ClockOffsetRestController.setClockOffset(java.lang.String,org.apache.fineract.cn.rhythm.api.v1.domain.ClockOffset) throws java.lang.InterruptedException
+16:19:54.934 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/initialize],methods=[POST],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.rhythm.service.rest.InitializeRestController.initialize() throws java.lang.InterruptedException
+16:19:54.940 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/applications/{applicationidentifier}],methods=[DELETE],consumes=[*/*],produces=[*/*]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.rhythm.service.rest.ApplicationRestController.deleteApplication(java.lang.String,java.lang.String) throws java.lang.InterruptedException
+16:19:54.966 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/applications/{applicationidentifier}/beats],methods=[POST],consumes=[application/json],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.rhythm.service.rest.BeatRestController.createBeat(java.lang.String,java.lang.String,org.apache.fineract.cn.rhythm.api.v1.domain.Beat) throws java.lang.InterruptedException
+16:19:54.975 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/applications/{applicationidentifier}/beats/{beatidentifier}],methods=[DELETE],consumes=[*/*],produces=[*/*]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.rhythm.service.rest.BeatRestController.deleteBeat(java.lang.String,java.lang.String,java.lang.String) throws java.lang.InterruptedException
+16:19:54.975 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/applications/{applicationidentifier}/beats/{beatidentifier}],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.rhythm.api.v1.domain.Beat> org.apache.fineract.cn.rhythm.service.rest.BeatRestController.getBeat(java.lang.String,java.lang.String,java.lang.String)
+16:19:54.976 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/applications/{applicationidentifier}/beats],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public java.util.List<org.apache.fineract.cn.rhythm.api.v1.domain.Beat> org.apache.fineract.cn.rhythm.service.rest.BeatRestController.getAllBeatsForApplication(java.lang.String,java.lang.String)
+16:19:54.984 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/permittables],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<org.apache.fineract.cn.anubis.api.v1.domain.PermittableEndpoint>> org.apache.fineract.cn.anubis.controller.PermittableRestController.fetchPermittableEndpoints()
+16:19:54.989 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/{timestamp}],methods=[POST],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.anubis.api.v1.domain.ApplicationSignatureSet> org.apache.fineract.cn.anubis.controller.SignatureCreatorRestController.createSignatureSet(java.lang.String,org.apache.fineract.cn.anubis.api.v1.domain.Signature)
+16:19:55.037 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/{timestamp}/application],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.anubis.api.v1.domain.Signature> org.apache.fineract.cn.anubis.controller.SignatureRestController.getApplicationSignature(java.lang.String)
+16:19:55.051 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/_latest/application],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.anubis.api.v1.domain.Signature> org.apache.fineract.cn.anubis.controller.SignatureRestController.getLatestApplicationSignature()
+16:19:55.052 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<java.lang.String>> org.apache.fineract.cn.anubis.controller.SignatureRestController.getAllSignatureSets()
+16:19:55.052 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/{timestamp}],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.anubis.api.v1.domain.ApplicationSignatureSet> org.apache.fineract.cn.anubis.controller.SignatureRestController.getSignatureSet(java.lang.String)
+16:19:55.053 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/_latest],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<org.apache.fineract.cn.anubis.api.v1.domain.ApplicationSignatureSet> org.apache.fineract.cn.anubis.controller.SignatureRestController.getLatestSignatureSet()
+16:19:55.053 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/signatures/{timestamp}],methods=[DELETE],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> org.apache.fineract.cn.anubis.controller.SignatureRestController.deleteSignatureSet(java.lang.String)
+16:19:55.055 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/requiredpermissions],methods=[GET],consumes=[*/*],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<org.apache.finearct.cn.permittedfeignclient.api.v1.domain.ApplicationPermission>> org.apache.fineract.cn.permittedfeignclient.controller.ApplicationPermissionRequirementsRestController.getRequiredPermissions()
+16:19:55.067 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+16:19:55.068 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+16:20:01.560 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/archaius || /archaius.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.575 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/heapdump || /heapdump.json],methods=[GET],produces=[application/octet-stream]}" onto public void org.springframework.boot.actuate.endpoint.mvc.HeapdumpMvcEndpoint.invoke(boolean,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse) throws java.io.IOException,javax.servlet.ServletException
+16:20:01.584 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/health || /health.json],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.HealthMvcEndpoint.invoke(java.security.Principal)
+16:20:01.586 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/mappings || /mappings.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.594 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/pause || /pause.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+16:20:01.598 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/features || /features.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.606 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.value(java.util.Map<java.lang.String, java.lang.String>)
+16:20:01.607 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env/reset],methods=[POST]}" onto public java.util.Map<java.lang.String, java.lang.Object> org.springframework.cloud.context.environment.EnvironmentManagerMvcEndpoint.reset()
+16:20:01.608 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/trace || /trace.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.609 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/resume || /resume.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+16:20:01.619 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/info || /info.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.623 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/dump || /dump.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.626 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/autoconfig || /autoconfig.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.656 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/configprops || /configprops.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.657 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/restart || /restart.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.context.restart.RestartMvcEndpoint.invoke()
+16:20:01.659 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EnvironmentMvcEndpoint.value(java.lang.String)
+16:20:01.669 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/env || /env.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.677 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/refresh || /refresh.json],methods=[POST]}" onto public java.lang.Object org.springframework.cloud.endpoint.GenericPostableMvcEndpoint.invoke()
+16:20:01.679 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/beans || /beans.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:01.680 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/metrics/{name:.*}],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.MetricsMvcEndpoint.value(java.lang.String)
+16:20:01.684 [main] INFO  o.s.b.a.e.mvc.EndpointHandlerMapping - Mapped "{[/metrics || /metrics.json],methods=[GET],produces=[application/json]}" onto public java.lang.Object org.springframework.boot.actuate.endpoint.mvc.EndpointMvcAdapter.invoke()
+16:20:06.244 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+16:20:06.785 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a54acec, org.springframework.security.web.context.SecurityContextPersistenceFilter@1578b8ec, org.springframework.security.web.header.HeaderWriterFilter@88b76f2, org.apache.fineract.cn.anubis.filter.IsisAuthenticatedProcessingFilter@19da993b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c1e14f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72028a45, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3380ca3d, org.springframework.security.web.session.SessionManagementFilter@498a612d, org.springframework.security.web.access.ExceptionTranslationFilter@6da4feeb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@364b1061]
+16:20:07.050 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Creating filter chain: org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration$LazyEndpointPathRequestMatcher@32256e68, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e7abaf7, org.springframework.security.web.context.SecurityContextPersistenceFilter@6a950a3b, org.springframework.security.web.header.HeaderWriterFilter@10177794, org.springframework.security.web.authentication.logout.LogoutFilter@b6bccb4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@193eb1ba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f7be6c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@647b9364, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@353f472a, org.springframework.security.web.session.SessionManagementFilter@e5c2463, org.springframework.security.web.access.ExceptionTranslationFilter@7e5b621b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76437e9b]
+16:20:08.928 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'tenantHeaderFilter' to urls: [/*]
+16:20:08.928 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'metricsFilter' to: [/*]
+16:20:08.928 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+16:20:08.929 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'springSecurityFilterChain' to: [/*]
+16:20:08.929 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'userContextFilter' to urls: [*]
+16:20:08.929 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+16:20:08.929 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+16:20:08.930 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+16:20:09.122 [main] INFO  o.s.b.w.s.DelegatingFilterProxyRegistrationBean - Filter springSecurityFilterChain was not registered (possibly already registered?)
+16:20:09.122 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'webRequestLoggingFilter' to: [/*]
+16:20:09.122 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'serviceExceptionFilter' to urls: [/*]
+16:20:09.123 [main] INFO  o.s.b.w.s.FilterRegistrationBean - Mapping filter: 'applicationContextIdFilter' to: [/*]
+16:20:09.123 [main] INFO  o.s.b.w.s.ServletRegistrationBean - Mapping servlet: 'dispatcherServlet' to [/]
+16:20:09.971 [main] INFO  o.e.j.server.handler.ContextHandler - Started o.s.b.c.e.j.JettyEmbeddedWebAppContext@632383b9{/rhythm-v1,file:///tmp/jetty-docbase.3162596622159520710.2022/,AVAILABLE}
+16:20:10.047 [main] INFO  org.eclipse.jetty.server.Server - Started @81046ms
+16:20:12.489 [main] INFO  o.s.c.a.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@15d114ce: startup date [Mon Oct 08 16:20:12 GMT 2018]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@13c27452
+16:20:12.702 [main] INFO  o.s.b.f.s.DefaultListableBeanFactory - Overriding bean definition for bean 'feignConversionService' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=permittedFeignClientsConfiguration; factoryMethodName=feignConversionService; initMethodName=null; destroyMethodName=(inferred); defined in org.apache.fineract.cn.permittedfeignclient.annotation.PermittedFeignClientsConfiguration] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=feignClientsConfiguration; factoryMethodName=feignConversionService; initMethodName=null; destroyMethodName=(inferred); defined in org.springframework.cloud.netflix.feign.FeignClientsConfiguration]
+16:20:12.717 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+16:20:30.983 [main] INFO  o.s.w.s.m.m.a.RequestMappingHandlerAdapter - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@13c27452: startup date [Mon Oct 08 16:19:07 GMT 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@7dc5e7b4
+16:20:32.930 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+16:20:32.930 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+16:20:33.312 [main] INFO  o.s.w.s.h.SimpleUrlHandlerMapping - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+16:20:36.767 [main] INFO  c.datastax.driver.core.ClockFactory - Using native clock to generate timestamps.
+16:20:45.355 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+16:20:45.355 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+16:20:45.449 [main] WARN  c.n.c.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+16:20:45.456 [main] INFO  c.n.c.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+16:20:46.198 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+16:20:46.201 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'dataSource' has been autodetected for JMX exposure
+16:20:46.714 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'refreshScope' has been autodetected for JMX exposure
+16:20:46.715 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'environmentManager' has been autodetected for JMX exposure
+16:20:46.718 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+16:20:46.719 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'refreshEndpoint' has been autodetected for JMX exposure
+16:20:46.724 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Bean with name 'restartEndpoint' has been autodetected for JMX exposure
+16:20:46.730 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+16:20:46.884 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'restartEndpoint': registering with JMX server as MBean [org.springframework.cloud.context.restart:name=restartEndpoint,type=RestartEndpoint]
+16:20:46.927 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+16:20:47.094 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=13c27452,type=ConfigurationPropertiesRebinder]
+16:20:47.140 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located MBean 'dataSource': registering with JMX server as MBean [com.jolbox.bonecp:name=dataSource,type=BoneCPDataSource]
+16:20:47.211 [main] INFO  o.s.j.e.a.AnnotationMBeanExporter - Located managed bean 'refreshEndpoint': registering with JMX server as MBean [org.springframework.cloud.endpoint:name=refreshEndpoint,type=RefreshEndpoint]
+16:20:47.222 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Registering beans for JMX exposure on startup
+16:20:50.437 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 0
+16:20:50.476 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+16:20:52.060 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+16:20:52.061 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+16:20:54.686 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+16:20:54.686 [main] INFO  c.n.d.p.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+16:20:56.447 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+16:20:56.808 [main] INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+16:20:56.809 [main] INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+16:20:56.810 [main] INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+16:20:56.810 [main] INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+16:20:56.810 [main] INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+16:20:56.810 [main] INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+16:20:56.811 [main] INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+16:20:59.722 [main] INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+16:20:59.739 [main] INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 1
+16:20:59.745 [main] INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 120
+16:20:59.888 [main] INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1539015659755 with initial instances count: 0
+16:21:00.247 [main] INFO  o.s.c.n.e.EurekaDiscoveryClientConfiguration - Registering application rhythm-v1 with eureka with status UP
+16:21:00.249 [main] INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1539015660249, current=UP, previous=STARTING]
+16:21:00.256 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022: registering service...
+16:21:00.296 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'featuresEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=featuresEndpoint]
+16:21:00.435 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'requestMappingEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=requestMappingEndpoint]
+16:21:00.452 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'environmentEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=environmentEndpoint]
+16:21:00.457 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'healthEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=healthEndpoint]
+16:21:00.463 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'beansEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=beansEndpoint]
+16:21:00.472 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'infoEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=infoEndpoint]
+16:21:00.480 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'metricsEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=metricsEndpoint]
+16:21:00.485 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'traceEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=traceEndpoint]
+16:21:00.490 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'dumpEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=dumpEndpoint]
+16:21:00.495 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'autoConfigurationReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=autoConfigurationReportEndpoint]
+16:21:00.500 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'configurationPropertiesReportEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=configurationPropertiesReportEndpoint]
+16:21:00.505 [main] INFO  o.s.b.a.e.jmx.EndpointMBeanExporter - Located managed bean 'archaiusEndpoint': registering with JMX server as MBean [org.springframework.boot:type=Endpoint,name=archaiusEndpoint]
+16:21:00.509 [main] INFO  o.s.c.s.DefaultLifecycleProcessor - Starting beans in phase 2147483647
+16:21:00.862 [main] INFO  o.s.s.a.ScheduledAnnotationBeanPostProcessor - No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+16:21:01.741 [DiscoveryClient-0] ERROR c.n.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:64)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+16:21:01.954 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization started
+16:21:02.598 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022 - Re-registering apps/RHYTHM-V1
+16:21:02.600 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022: registering service...
+16:21:03.615 [main] INFO  o.s.web.servlet.DispatcherServlet - FrameworkServlet 'dispatcherServlet': initialization completed in 1578 ms
+16:21:04.331 [pool-9-thread-1] INFO  o.h.h.i.QueryTranslatorFactoryInitiator - HHH000397: Using ASTQueryTranslatorFactory
+16:21:04.743 [DiscoveryClient-1] ERROR c.n.discovery.TimedSupervisorTask - task supervisor timed out
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:64)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+16:21:05.367 [DiscoveryClient-HeartbeatExecutor-1] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022 - Re-registering apps/RHYTHM-V1
+16:21:05.370 [DiscoveryClient-HeartbeatExecutor-1] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022: registering service...
+16:21:06.891 [main] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@7ab851de{HTTP/1.1,[http/1.1]}{0.0.0.0:2022}
+16:21:08.046 [main] INFO  o.s.b.c.e.j.JettyEmbeddedServletContainer - Jetty started on port(s) 2022 (http/1.1)
+16:21:08.047 [main] INFO  o.s.c.n.e.EurekaDiscoveryClientConfiguration - Updating port to 2022
+16:21:08.420 [main] INFO  o.a.f.c.r.service.RhythmApplication - Started RhythmApplication in 133.029 seconds (JVM running for 139.419)
+16:21:08.772 [DiscoveryClient-1] ERROR c.n.discovery.TimedSupervisorTask - task supervisor rejected the task
+java.util.concurrent.RejectedExecutionException: Task java.util.concurrent.FutureTask@5d5b111b rejected from java.util.concurrent.ThreadPoolExecutor@59648e68[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2063)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:830)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1379)
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:112)
+	at com.netflix.discovery.TimedSupervisorTask.run(TimedSupervisorTask.java:62)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+16:21:09.493 [DiscoveryClient-HeartbeatExecutor-1] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022 - registration status: 204
+16:21:09.493 [DiscoveryClient-HeartbeatExecutor-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022 - registration status: 204
+16:21:09.534 [DiscoveryClient-InstanceInfoReplicator-0] INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_RHYTHM-V1/97b9c9d57a60:rhythm-v1:2022 - registration status: 204
+16:21:13.298 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.299 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:02.503' for update
+16:21:13.423 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.424 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:13.422' for update
+16:21:13.427 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.428 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:13.426' for update
+16:21:13.435 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.436 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:13.434' for update
+16:21:13.441 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.441 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:13.439' for update
+16:21:13.456 [pool-9-thread-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1146, SQLState: 42S02
+16:21:13.456 [pool-9-thread-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'seshat.khepri_beats' doesn't exist
+Query is : select beatentity0_.id as id1_1_, beatentity0_.alignment_hour as alignmen2_1_, beatentity0_.application_identifier as applicat3_1_, beatentity0_.beat_identifier as beat_ide4_1_, beatentity0_.next_beat as next_bea5_1_, beatentity0_.tenant_identifier as tenant_i6_1_ from khepri_beats beatentity0_ where beatentity0_.next_beat<'2018-10-08 16:21:13.447' for update
