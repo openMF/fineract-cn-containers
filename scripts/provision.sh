@@ -115,6 +115,14 @@ function assign-identity-ms {
 	${PROVISIONER_URL}/tenants/${tenant}/identityservice | jq --raw-output '.adminPassword')
 }
 
+function list-tenant-services {
+    local tenant="$1"
+
+    echo ""
+    echo "$tenant services: "
+    curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" -H "X-Tenant-Identifier: $tenant" ${PROVISIONER_URL}/tenants/$tenant/applications | jq '.'
+}
+
 function create-scheduler-role {
     local tenant="$1"
 
@@ -136,17 +144,40 @@ function create-scheduler-role {
 }
 
 function create-user {
-    local user_identifier="$1"
-    local password="$2"
-    local role="$3"
+    local tenant="$1"
+    local user="$2"
+    local user_identifier="$3"
+    local password="$4"
+    local role="$5"
 
-    curl -s -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: playground" \
+    curl -s -H "Content-Type: application/json" -H "User: $user" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: $tenant" \
         --data '{
                 "identifier": "'"$user_identifier"'",
                 "password": "'"$password"'",
                 "role": "'"$role"'"
         }' \
         ${IDENTITY_URL}/users | jq '.'
+}
+
+function list-users {
+    local tenant="$1"
+    local user="$2"
+
+    echo ""
+    echo "Users: "
+    curl -s -H "Content-Type: application/json" -H "User: $user" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: $tenant" ${IDENTITY_URL}/users | jq '.'
+}
+
+function update-password {
+    local tenant="$1"
+    local user="$2"
+    local password="$3"
+
+    curl -s -X PUT -H "Content-Type: application/json" -H "User: $user" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: $tenant" \
+        --data '{
+                "password": "'"$password"'"
+        }' \
+        ${IDENTITY_URL}/users/${user}/password | jq '.'
 }
 
 init-config $1
@@ -158,7 +189,10 @@ list-microservices
 create-tenant "playground" "A place to mess around and have fun" "All in one Demo Server" "playground"
 list-tenants
 assign-identity-ms "playground"
+# list-tenant-services "playground"
 login "playground" "antony" $ADMIN_PASSWORD
 create-scheduler-role "playground"
-create-user "imhotep" "p4ssw0rd" "scheduler"
+create-user "playground" "antony" "imhotep" "p4ssw0rd" "scheduler"
+list-users "playground" "antony"
 login "playground" "imhotep" "p4ssw0rd"
+update-password "playground" "imhotep" "p4ssw0rd"
