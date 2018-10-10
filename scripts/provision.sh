@@ -16,6 +16,10 @@ function init-config {
             "mariadb.user") MARIADB_USER="$value" ;;
             "mariadb.password") MARIADB_PWD="$value" ;;
             "provisioner.ip") PROVISIONER_IP="$value"; PROVISIONER_URL="http://${PROVISIONER_IP}:2020/provisioner-v1" ;;
+            "identity-ms.name") IDENTITY_MS_NAME="$value" ;;
+            "identity-ms.description") IDENTITY_MS_DESCRIPTION="$value" ;;
+            "identity-ms.vendor") IDENTITY_MS_VENDOR="$value";;
+            "identity.ip") IDENTITY_IP="$value"; IDENTITY_URL="http://${IDENTITY_IP}:2021/identity-v1";;
             "office-ms.name") OFFICE_MS_NAME="$value" ;;
             "office-ms.description") OFFICE_MS_DESCRIPTION="$value" ;;
             "office-ms.vendor") OFFICE_MS_VENDOR="$value";;
@@ -64,7 +68,7 @@ function create-tenant {
     local description="$3"
     local database_name="$4"
 
-    curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${token}" \
+    curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
     --data '{
 	"identifier": "'"$identifier"'",
 	"name": "'"$name"'",
@@ -87,6 +91,20 @@ function create-tenant {
     ${PROVISIONER_URL}/tenants
 }
 
+function list-tenants {
+    echo ""
+    echo "Tenants: "
+    curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/tenants | jq '.'
+}
+
+function assign-identity-ms {
+    local tenant="$1"
+
+    ADMIN_PASSWORD=$( curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
+	--data '{ "name": "'"$IDENTITY_MS_NAME"'" }' \
+	${PROVISIONER_URL}/tenants/${tenant}/identityservice | jq --raw-output '.adminPassword')
+}
+
 init-config $1
 login
 create-microservice $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
@@ -94,3 +112,5 @@ list-microservices
 delete-microservice $OFFICE_MS_NAME
 list-microservices
 create-tenant "playground" "A place to mess around and have fun" "All in one Demo Server" "playground"
+list-tenants
+assign-identity-ms "playground"
