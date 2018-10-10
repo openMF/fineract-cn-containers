@@ -1,45 +1,76 @@
 version: '3'
 services:
-  provisioner-ms:
-    build:
-      context: ./provisioner-ms-scripts
-      dockerfile: Dockerfile
-    container_name: provisioner-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.6
-  # identity-ms:
+    # provisioner-ms:
+    #   build:
+    #     context: ./provisioner-ms-scripts
+    #     dockerfile: Dockerfile
+    #   container_name: provisioner-ms
+    #   environment:
+    #     eureka.instance.hostname: 172.16.238.2
+    #     ribbon.listOfServers: 172.16.238.2:9090
+    #     eureka.client.serviceUrl.defaultZone: http://172.16.238.2:8761/eureka
+    #     activemq.brokerUrl: tcp://172.16.238.3:61616
+    #     cassandra.contactPoints: 172.16.238.5:9042
+    #     mariadb.host: 172.16.238.4
+    #   networks:
+    #     default:
+    #       ipv4_address: 172.16.238.6
+    identity-ms:
+      build:
+        context: ./identity-ms-scripts
+        dockerfile: Dockerfile
+      container_name: identity-ms
+      environment:
+        eureka.instance.hostname: 172.16.238.2
+        ribbon.listOfServers: 172.16.238.2:9090
+        eureka.client.serviceUrl.defaultZone: http://172.16.238.2:8761/eureka
+        activemq.brokerUrl: tcp://172.16.238.3:61616
+        cassandra.contactPoints: 172.16.238.5:9042
+        mariadb.host: 172.16.238.4
+        system.publicKey.timestamp: 2018-10-10T01_01_15
+        system.publicKey.modulus: 18830417865504754663596657921169981388613608618114181257730232626007046104205069610563634060207899189424089915821981663929865082241370961151496748704877748259390459829186594341836017608519010700832900450611837813953253561963866572420310400523511657369829766416803363168491886414799775820748756499203093647390636959841752155645685561162742188977961694005704440347615513393284989322067719641549057293319957667170169198305510723774385566981450654256215485917703358999975306907551370265528935629966530892656985959818205610297140283766405889374249542201561470010250064433930099114538970547846267201625038851781585379046349
+        system.publicKey.exponent: 65537
+      networks:
+        default:
+          ipv4_address: 172.16.238.7
+    # rhythm-ms:
+    #   build:
+    #     context: ./rhythm-ms-scripts
+    #     dockerfile: Dockerfile
+    #   container_name: rhythm-ms
+    #   environment:
+    #     eureka.instance.hostname: 172.16.238.2
+    #     ribbon.listOfServers: 172.16.238.2:9090
+    #     eureka.client.serviceUrl.defaultZone: http://172.16.238.2:8761/eureka
+    #     activemq.brokerUrl: tcp://172.16.238.3:61616
+    #     cassandra.contactPoints: 172.16.238.5:9042
+    #     mariadb.host: 172.16.238.4
+    #     system.publicKey.timestamp: 2018-10-09T00_29_52
+    #     system.publicKey.modulus: 19397397801156192872348448981549818906094025097005232831227640136750089825602668458340881212709686204576589867644257524422566732280563020880017665102060979931883631841715201842821221066589895272186377061985376796893104016071559211905066015826591817049777361909021915947076497443050843027811640154132776581253862416848467674401029105512897305865711755250981974529416042952285926604224825669050536820330643041952941760491204063224366182608008677937228634071650573350610365644906630307029850903622183929798989353595260169577067555054746344003796739968034065368472576276213174407031706324322626856530646818669421534500701
+    #     system.publicKey.exponent: 65537
+    #   networks:
+    #     default:
+    #       ipv4_address: 172.16.238.8
+#   office-ms:
+#     build:
+#       context: ./office-ms-scripts
+#       dockerfile: Dockerfile
+#     container_name: office-ms
+#     environment:
+#       system.publicKey.timestamp: 2018-10-04T15_45_05
+#       system.publicKey.modulus: 20678798379530920228771362874734827954554238947790613861243864779401395007438022185668515344705267556059756443226073299737130382098412995142782662283024265760900169964459639403132914527045093617628106256654523240496737266010977520683674025321453103701364656662553617771923646250864879993942933513718800160367523661678374765507165251531664555111029922432172574561745359952893191995663669381693754631085574755756863237691422604004101922574384029566128236040005480992825703962829179416426864090975199820411115293192712776643723488850628628201206919171623914960534664148946771530551983365081480593409186763542595759739503
+#       system.publicKey.exponent: 65537
+#     networks:
+#       default:
+#         ipv4_address: 172.16.238.9
+  # customer-ms:
   #   build:
-  #     context: ./identity-ms-scripts
+  #     context: ./customer-ms-scripts
   #     dockerfile: Dockerfile
-  #   container_name: identity-ms
+  #   container_name: customer-ms
   #   networks:
   #     default:
-  #       ipv4_address: 172.16.238.7
-  # rhythm-ms:
-  #   build:
-  #     context: ./rhythm-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: rhythm-ms
-  #   networks:
-  #     default:
-  #       ipv4_address: 172.16.238.8
-  # office-ms:
-  #   build:
-  #     context: ./office-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: office-ms
-  #   networks:
-  #     default:
-  #       ipv4_address: 172.16.238.9
-  customer-ms:
-    build:
-      context: ./customer-ms-scripts
-      dockerfile: Dockerfile
-    container_name: customer-ms
-    networks:
-      default:
-        ipv4_address: 172.16.238.10
+  #       ipv4_address: 172.16.238.10
   # portfolio-ms:
   #   build:
   #     context: ./portfolio-ms-scripts

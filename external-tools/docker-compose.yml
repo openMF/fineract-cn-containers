@@ -23,10 +23,6 @@ services:
     container_name: eureka
     ports:
       - "8761:8761"
-    healthcheck:
-      test: curl -u admin:admin -s http://172.16.238.2:8761
-      interval: 5s
-      retries: 20
     networks:
       app_net:
         ipv4_address: 172.16.238.2
@@ -38,6 +34,8 @@ services:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
+    volumes:
+      - mariadb-volume:/var/lib/mysql
     healthcheck:
       test: mysql --user=root --password=mysql -h 172.16.238.4
       interval: 5s
@@ -45,8 +43,6 @@ services:
     networks:
       app_net:
         ipv4_address: 172.16.238.4
-    volumes:
-      - mariadb-volume
 
   cassandra:
     image: cassandra
@@ -61,7 +57,7 @@ services:
       app_net:
         ipv4_address: 172.16.238.5
     volumes:
-      - cassandra-volume
+      - cassandra-volume:/var/lib/cassandra
 
 volumes:
   cassandra-volume:

@@ -1,4 +1,5 @@
 #!/bin/sh
+
 cd external-tools/
 docker-compose up -d
 while ! nc -z 172.16.238.5 9042; do

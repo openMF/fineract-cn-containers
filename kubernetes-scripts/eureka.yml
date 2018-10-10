@@ -34,9 +34,7 @@ spec:
         app: eureka
     spec:
       containers:
-        #- image: docker.io/anh3h/eureka-server
-        - image: anh3h/eureka-server
-          #imagePullPolicy: Always
+        - image: docker.io/anh3h/eureka-server
           name: eureka-server
           ports:
             - containerPort: 8761
