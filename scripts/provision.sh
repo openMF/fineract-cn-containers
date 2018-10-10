@@ -32,10 +32,20 @@ function init-config {
     done < "$file"
 }
 
-function login {
+function auto-seshat {
     TOKEN=$( curl -s -X POST -H "Content-Type: application/json" \
         "$PROVISIONER_URL"'/auth/token?grant_type=password&client_id=service-runner&username=wepemnefret&password=oS/0IiAME/2unkN1momDrhAdNKOhGykYFH/mJN20' \
          | jq --raw-output '.token' )
+}
+
+function login {
+    local tenant="$1"
+    local username="$2"
+    local password="$3"
+
+    ACCESS_TOKEN=$( curl -s -X POST -H "Content-Type: application/json" -H "User: guest" -H "X-Tenant-Identifier: $tenant" \
+       "${IDENTITY_URL}/token?grant_type=password&username=${username}&password=${password}" \
+         | jq --raw-output '.accessToken' )
 }
 
 function create-microservice {
@@ -105,8 +115,42 @@ function assign-identity-ms {
 	${PROVISIONER_URL}/tenants/${tenant}/identityservice | jq --raw-output '.adminPassword')
 }
 
+function create-scheduler-role {
+    local tenant="$1"
+
+    curl -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: $tenant" \
+        --data '{
+                "identifier": "scheduler",
+                "permissions": [
+                        {
+                                "permittableEndpointGroupIdentifier": "identity__v1__app_self",
+                                "allowedOperations": ["CHANGE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "portfolio__v1__khepri",
+                                "allowedOperations": ["CHANGE"]
+                        }
+                ]
+        }' \
+        ${IDENTITY_URL}/roles
+}
+
+function create-user {
+    local user_identifier="$1"
+    local password="$2"
+    local role="$3"
+
+    curl -s -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: playground" \
+        --data '{
+                "identifier": "'"$user_identifier"'",
+                "password": "'"$password"'",
+                "role": "'"$role"'"
+        }' \
+        ${IDENTITY_URL}/users | jq '.'
+}
+
 init-config $1
-login
+auto-seshat
 create-microservice $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
 list-microservices
 delete-microservice $OFFICE_MS_NAME
@@ -114,3 +158,7 @@ list-microservices
 create-tenant "playground" "A place to mess around and have fun" "All in one Demo Server" "playground"
 list-tenants
 assign-identity-ms "playground"
+login "playground" "antony" $ADMIN_PASSWORD
+create-scheduler-role "playground"
+create-user "imhotep" "p4ssw0rd" "scheduler"
+login "playground" "imhotep" "p4ssw0rd"
