@@ -1,9 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
 ARG provisioner_port=2020
-ARG cassandraIp=172.16.238.5
-ARG activemqIp=172.16.238.3
-ARG eurekaIp=172.16.238.2
 
 ENV server.max-http-header-size=16384 \
     bonecp.partitionCount=1 \
@@ -12,7 +9,7 @@ ENV server.max-http-header-size=16384 \
     bonecp.acquireIncrement=1 \
     server.port=9090 \
     cassandra.clusterName="Test Cluster" \
-    cassandra.contactPoints=$cassandraIp:9042 \
+    cassandra.contactPoints=172.16.238.5:9042 \
     cassandra.keyspace=seshat \
     cassandra.cl.read=ONE \
     cassandra.cl.write=ONE \
@@ -28,15 +25,15 @@ ENV server.max-http-header-size=16384 \
     flyway.enabled=false \
     feign.hystrix.enabled=false \
     ribbon.eureka.enabled=false \
-    ribbon.listOfServers=$eurekaIp:9090 \
-    eureka.client.serviceUrl.defaultZone=http://$eurekaIp:8761/eureka \
+    ribbon.listOfServers=172.16.238.2:9090 \
+    eureka.client.serviceUrl.defaultZone=http://172.16.238.2:8761/eureka \
     spring.cloud.discovery.enabled=true \
-    eureka.instance.hostname=$eurekaIp \
+    eureka.instance.hostname=172.16.238.2 \
     eureka.client.fetchRegistry=true \
     eureka.registration.enabled=false \
     eureka.instance.leaseRenewalIntervalInSeconds=1 \
     eureka.client.instanceInfoReplicationIntervalSeconds=1 \
-    activemq.brokerUrl=tcp://$activemqIp:61616 \
+    activemq.brokerUrl=tcp://172.16.238.3:61616 \
     ribbon.eureka.enabled=true \
     system.initialclientid=service-runner \
     spring.profiles.active=production

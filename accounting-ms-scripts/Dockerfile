@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-ARG payroll_port=2030
+ARG accounting_port=2025
 
 ENV server.max-http-header-size=16384 \
     bonecp.partitionCount=1 \
@@ -37,10 +37,11 @@ ENV server.max-http-header-size=16384 \
     ribbon.eureka.enabled=true \
     system.initialclientid=service-runner
 
-WORKDIR /tmp
-COPY payroll-service-boot-0.1.0-BUILD-SNAPSHOT.jar .
-ENV spring.application.name="payroll-v1" \
-    server.port=$payroll_port \
-    server.contextPath="/payroll-v1"
 
-CMD ["java", "-jar", "payroll-service-boot-0.1.0-BUILD-SNAPSHOT.jar"]
+WORKDIR /tmp
+COPY accounting-service-boot-0.1.0-BUILD-SNAPSHOT.jar .
+ENV spring.application.name="accounting-v1" \
+    server.port=$accounting_port \
+    server.contextPath="/accounting-v1"
+
+CMD ["java", "-jar", "accounting-service-boot-0.1.0-BUILD-SNAPSHOT.jar"]
