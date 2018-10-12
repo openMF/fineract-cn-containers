@@ -257,11 +257,11 @@ update-password "playground" "imhotep" "p4ssw0rd"
 login "playground" "imhotep" "p4ssw0rd"
 provision-app "playground" $RHYTHM_MS_NAME
 set-application-permission-enabled-for-user "playground" $RHYTHM_MS_NAME "identity__v1__app_self" "playground"
-# provision-app "playground" $OFFICE_MS_NAME
-# provision-app "playground" $LEDGER_MS_NAME
+provision-app "playground" $OFFICE_MS_NAME
+provision-app "playground" $LEDGER_MS_NAME
 provision-app "playground" $PORTFOLIO_MS_NAME
 set-application-permission-enabled-for-user "playground" $RHYTHM_MS_NAME "portfolio__v1__khepri" "playground"
-# provision-app "playground" $CUSTOMER_MS_NAME
-# provision-app "playground" $DEPOSIT_MS_NAME
-# provision-app "playground" $TELLER_MS_NAME
-# provision-app "playground" $REPORT_MS_NAME
+provision-app "playground" $CUSTOMER_MS_NAME
+provision-app "playground" $DEPOSIT_MS_NAME
+provision-app "playground" $TELLER_MS_NAME
+provision-app "playground" $REPORT_MS_NAME
