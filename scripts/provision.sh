@@ -308,5 +308,5 @@ provision-app "playground" $TELLER_MS_NAME
 provision-app "playground" $REPORT_MS_NAME
 login "playground" "antony" $ADMIN_PASSWORD
 create-org-admin-role "playground"
-create-user "playground" "antony" "operator" "init1@l" "orgadmin"
+create-user "playground" "antony" "operator" "init1@l23" "orgadmin"
 login "playground" "operator" "init1@l"
