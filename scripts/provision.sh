@@ -175,6 +175,47 @@ function create-scheduler-role {
     echo "Created scheduler role"
 }
 
+function create-org-admin-role {
+    local tenant="$1"
+
+    curl -H "Content-Type: application/json" -H "User: antony" -H "Authorization: ${ACCESS_TOKEN}" -H "X-Tenant-Identifier: $tenant" \
+        --data '{
+                "identifier": "orgadmin",
+                "permissions": [
+                        {
+                                "permittableEndpointGroupIdentifier": "office__v1__employees",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "office__v1__offices",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "identity__v1__users",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "identity__v1__roles",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "identity__v1__self",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "accounting__v1__ledger",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        },
+                        {
+                                "permittableEndpointGroupIdentifier": "accounting__v1__account",
+                                "allowedOperations": ["READ", "CHANGE", "DELETE"]
+                        }
+                ]
+        }' \
+        ${IDENTITY_URL}/roles
+    echo "Created organisation administrator role"
+}
+
 function create-user {
     local tenant="$1"
     local user="$2"
@@ -265,3 +306,7 @@ provision-app "playground" $CUSTOMER_MS_NAME
 provision-app "playground" $DEPOSIT_MS_NAME
 provision-app "playground" $TELLER_MS_NAME
 provision-app "playground" $REPORT_MS_NAME
+login "playground" "antony" $ADMIN_PASSWORD
+create-org-admin-role "playground"
+create-user "playground" "antony" "operator" "init1@l" "orgadmin"
+login "playground" "operator" "init1@l"
