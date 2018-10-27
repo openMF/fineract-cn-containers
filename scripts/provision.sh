@@ -288,25 +288,32 @@ create-microservice $PORTFOLIO_MS_NAME $PORTFOLIO_MS_DESCRIPTION $PORTFOLIO_MS_V
 create-microservice $DEPOSIT_MS_NAME $DEPOSIT_MS_DESCRIPTION $DEPOSIT_MS_VENDOR $DEPOSIT_URL
 create-microservice $TELLER_MS_NAME $TELLER_MS_DESCRIPTION $TELLER_MS_VENDOR $TELLER_URL
 create-microservice $REPORT_MS_NAME $REPORT_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
-create-tenant "playground" "A place to mess around and have fun" "All in one Demo Server" "playground"
-assign-identity-ms "playground"
-login "playground" "antony" $ADMIN_PASSWORD
-create-scheduler-role "playground"
-create-user "playground" "antony" "imhotep" "p4ssw0rd" "scheduler"
-login "playground" "imhotep" "p4ssw0rd"
-update-password "playground" "imhotep" "p4ssw0rd"
-login "playground" "imhotep" "p4ssw0rd"
-provision-app "playground" $RHYTHM_MS_NAME
-set-application-permission-enabled-for-user "playground" $RHYTHM_MS_NAME "identity__v1__app_self" "playground"
-provision-app "playground" $OFFICE_MS_NAME
-provision-app "playground" $LEDGER_MS_NAME
-provision-app "playground" $PORTFOLIO_MS_NAME
-set-application-permission-enabled-for-user "playground" $RHYTHM_MS_NAME "portfolio__v1__khepri" "playground"
-provision-app "playground" $CUSTOMER_MS_NAME
-provision-app "playground" $DEPOSIT_MS_NAME
-provision-app "playground" $TELLER_MS_NAME
-provision-app "playground" $REPORT_MS_NAME
-login "playground" "antony" $ADMIN_PASSWORD
-create-org-admin-role "playground"
-create-user "playground" "antony" "operator" "init1@l23" "orgadmin"
-login "playground" "operator" "init1@l"
+
+for TENANT in "${TENANTS[@]}"; do
+    echo
+    echo
+    echo "Provisioning applications for tenant, ${TENANT}."
+    read -p "Enter a description for the tenant, ${TENANT}: " description
+    create-tenant ${TENANT} "A place to mess around and have fun" "All in one Demo Server" ${TENANT}
+    assign-identity-ms ${TENANT}
+    login ${TENANT} "antony" $ADMIN_PASSWORD
+    create-scheduler-role ${TENANT}
+    create-user ${TENANT} "antony" "imhotep" "p4ssw0rd" "scheduler"
+    login ${TENANT} "imhotep" "p4ssw0rd"
+    update-password ${TENANT} "imhotep" "p4ssw0rd"
+    login ${TENANT} "imhotep" "p4ssw0rd"
+    provision-app ${TENANT} $RHYTHM_MS_NAME
+    set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "identity__v1__app_self" ${TENANT}
+    provision-app ${TENANT} $OFFICE_MS_NAME
+    provision-app ${TENANT} $LEDGER_MS_NAME
+    provision-app ${TENANT} $PORTFOLIO_MS_NAME
+    set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "portfolio__v1__khepri" ${TENANT}
+    provision-app ${TENANT} $CUSTOMER_MS_NAME
+    provision-app ${TENANT} $DEPOSIT_MS_NAME
+    provision-app ${TENANT} $TELLER_MS_NAME
+    provision-app ${TENANT} $REPORT_MS_NAME
+    login ${TENANT} "antony" $ADMIN_PASSWORD
+    create-org-admin-role ${TENANT}
+    create-user ${TENANT} "antony" "operator" "init1@l23" "orgadmin"
+    login ${TENANT}" "operator" "init1@l"
+done
