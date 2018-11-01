@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-service
+  namespace: default
+spec:
+  selector:
+    app: portfolio-ms
+  ports:
+    - port: 2026
+      targetPort: 2026
+  type: LoadBalancer
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: portfolio-ms-cluster
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portfolio-ms
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: portfolio-ms
+    spec:
+      containers:
+      - name: myapp
+        image: docker.io/anh3h/portfolio-ms
+        imagePullPolicy: Always
+        env:
+          - name: eureka.instance.hostname
+            value: 35.194.61.47
+          - name: ribbon.listOfServers
+            value: 35.194.61.47:9090
+          - name: eureka.client.serviceUrl.defaultZone
+            value: http://35.194.61.47:8761/eureka
+          - name: activemq.brokerUrl
+            value: tcp://35.188.59.246:61616
+          - name: cassandra.contactPoints
+            value: 35.192.186.138:9042
+          - name: mariadb.host
+            value: 35.224.33.201
+        ports:
+          - containerPort: 2026
