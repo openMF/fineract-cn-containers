@@ -67,34 +67,56 @@ function auto-seshat {
 }
 
 function get-tenants {
-    echo ""
-    echo "Tenants: "
-    curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/tenants | jq '.'
+    TENANTS=$( curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/tenants | jq '.' )
 }
 
 function get-assgined-applications {
     local tenant="$1"
 
-    echo ""
-    echo "$tenant services: "
-    curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" -H "X-Tenant-Identifier: $tenant" ${PROVISIONER_URL}/tenants/$tenant/applications | jq '.'
+    ASSIGNED_APPLICATIONS=$( curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" -H "X-Tenant-Identifier: $tenant" \
+         ${PROVISIONER_URL}/tenants/$tenant/applications | jq '.' )
 }
 
 function assign-identity-ms {
     local tenant="$1"
 
-    ADMIN_PASSWORD=$( curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
-	--data '{ "name": "'"$IDENTITY_MS_NAME"'" }' \
-	${PROVISIONER_URL}/tenants/${tenant}/identityservice | jq --raw-output '.adminPassword')
-    echo "Assigned identity microservice for tenant $tenant"
+    curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
+	    --data '{ "name": "'"$IDENTITY_MS_NAME"'" }' \
+	    ${PROVISIONER_URL}/tenants/${tenant}/identityservice
+}
+
+function provision-app {
+    local tenant="$1"
+    local service="$2"
+
+    curl -s -X PUT -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
+	--data '[{ "name": "'"$service"'" }]' \
+	${PROVISIONER_URL}/tenants/${tenant}/applications | jq '.'
 }
 
 init-config $1
 auto-seshat
 get-tenants
 
-for TENANT in "${TENANTS[@]}"; do
-    echo
-    echo
-    echo "Migrating applications for tenant, ${TENANT}."
+for tenant in "${TENANTS[@]}"; do
+
+    echo ""
+    tenant_identifier=$(echo $tenant | jq ".[].identifier")
+    tenant_identifier="${tenant_identifier%\"}"
+    tenant_identifier="${tenant_identifier#\"}"
+    echo "Migrating applications for tenant, ${tenant_identifier}."
+    get-assgined-applications $tenant_identifier
+
+    for application in "${ASSIGNED_APPLICATIONS[@]}"; do
+        application=$(echo $application | jq ".[].name")
+        application="${application%\"}"
+        application="${application#\"}"
+        if [ $application == $IDENTITY_MS_NAME ]; then
+            assign-identity-ms $tenant_identifier
+        else
+            provision-app $tenant_identifier $application
+        fi
+    done
+
 done
+echo "COMPLETED PROCESS SUCCESSFULLY."

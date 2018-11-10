@@ -73,7 +73,7 @@ function login {
 
     ACCESS_TOKEN=$( curl -s -X POST -H "Content-Type: application/json" -H "User: guest" -H "X-Tenant-Identifier: $tenant" \
        "${IDENTITY_URL}/token?grant_type=password&username=${username}&password=${password}" \
-         | jq --raw-output '.accessToken' )
+        | jq --raw-output '.accessToken' )
 }
 
 function create-application {
@@ -106,7 +106,6 @@ function create-tenant {
     local name="$2"
     local description="$3"
     local database_name="$4"
-    echo $name
 
     curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" \
     --data '{
@@ -280,22 +279,21 @@ function set-application-permission-enabled-for-user {
 
 init-config $1
 auto-seshat
-# create-application $IDENTITY_MS_NAME $IDENTITY_MS_DESCRIPTION $IDENTITY_MS_VENDOR $IDENTITY_URL
-# create-application $RHYTHM_MS_NAME $RHYTHM_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
-# create-application $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
-# create-application $CUSTOMER_MS_NAME $CUSTOMER_MS_DESCRIPTION $CUSTOMER_MS_VENDOR $CUSTOMER_URL
-# create-application $LEDGER_MS_NAME $LEDGER_MS_DESCRIPTION $LEDGER_MS_VENDOR $LEDGER_URL
-# create-application $PORTFOLIO_MS_NAME $PORTFOLIO_MS_DESCRIPTION $PORTFOLIO_MS_VENDOR $PORTFOLIO_URL
-# create-application $DEPOSIT_MS_NAME $DEPOSIT_MS_DESCRIPTION $DEPOSIT_MS_VENDOR $DEPOSIT_URL
-# create-application $TELLER_MS_NAME $TELLER_MS_DESCRIPTION $TELLER_MS_VENDOR $TELLER_URL
-# create-application $REPORT_MS_NAME $REPORT_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
+create-application $IDENTITY_MS_NAME $IDENTITY_MS_DESCRIPTION $IDENTITY_MS_VENDOR $IDENTITY_URL
+create-application $RHYTHM_MS_NAME $RHYTHM_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
+create-application $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
+create-application $CUSTOMER_MS_NAME $CUSTOMER_MS_DESCRIPTION $CUSTOMER_MS_VENDOR $CUSTOMER_URL
+create-application $LEDGER_MS_NAME $LEDGER_MS_DESCRIPTION $LEDGER_MS_VENDOR $LEDGER_URL
+create-application $PORTFOLIO_MS_NAME $PORTFOLIO_MS_DESCRIPTION $PORTFOLIO_MS_VENDOR $PORTFOLIO_URL
+create-application $DEPOSIT_MS_NAME $DEPOSIT_MS_DESCRIPTION $DEPOSIT_MS_VENDOR $DEPOSIT_URL
+create-application $TELLER_MS_NAME $TELLER_MS_DESCRIPTION $TELLER_MS_VENDOR $TELLER_URL
+create-application $REPORT_MS_NAME $REPORT_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
 
 for TENANT in "${TENANTS[@]}"; do
     echo
-    echo
     echo "Provisioning applications for tenant, ${TENANT}."
+    echo
     read -p "Enter a name for the tenant, ${TENANT}: " -r name
-    tenant_name=$name
     create-tenant ${TENANT} "${name}" "All in one Demo Server" ${TENANT}
     assign-identity-ms ${TENANT}
     login ${TENANT} "antony" $ADMIN_PASSWORD
@@ -305,17 +303,21 @@ for TENANT in "${TENANTS[@]}"; do
     update-password ${TENANT} "imhotep" "p4ssw0rd"
     login ${TENANT} "imhotep" "p4ssw0rd"
     provision-app ${TENANT} $RHYTHM_MS_NAME
+    login ${TENANT} "imhotep" "p4ssw0rd"
     set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "identity__v1__app_self" ${TENANT}
-    # provision-app ${TENANT} $OFFICE_MS_NAME
-    # provision-app ${TENANT} $LEDGER_MS_NAME
-    # provision-app ${TENANT} $PORTFOLIO_MS_NAME
-    # set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "portfolio__v1__khepri" ${TENANT}
-    # provision-app ${TENANT} $CUSTOMER_MS_NAME
-    # provision-app ${TENANT} $DEPOSIT_MS_NAME
-    # provision-app ${TENANT} $TELLER_MS_NAME
-    # provision-app ${TENANT} $REPORT_MS_NAME
+    provision-app ${TENANT} $OFFICE_MS_NAME
+    provision-app ${TENANT} $LEDGER_MS_NAME
+    provision-app ${TENANT} $PORTFOLIO_MS_NAME
+    set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "portfolio__v1__khepri" ${TENANT}
+    provision-app ${TENANT} $CUSTOMER_MS_NAME
+    provision-app ${TENANT} $DEPOSIT_MS_NAME
+    provision-app ${TENANT} $TELLER_MS_NAME
+    provision-app ${TENANT} $REPORT_MS_NAME
+
     login ${TENANT} "antony" $ADMIN_PASSWORD
     create-org-admin-role ${TENANT}
     create-user ${TENANT} "antony" "operator" "init1@l23" "orgadmin"
     login ${TENANT} "operator" "init1@l"
 done
+
+echo "COMPLETED PROCESS SUCCESSFULLY."
