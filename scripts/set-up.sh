@@ -2,6 +2,10 @@
 
 SHORT_OPTS="t:"
 LONG_OPTS="tenants:"
+if [ "$#" -le 0  ]; then
+	echo "usage: invalid command line argument"
+	exit 3
+fi
 
 if [ $1 == 'provision' ] || [ $1 == 'migrate' ]; then
 	ACTION=$1
@@ -30,7 +34,11 @@ if [ $1 == 'provision' ] || [ $1 == 'migrate' ]; then
 	done
 
 	TENANTS+=("$@")
-	. ./provision.sh config.txt
+	if [ $ACTION == "provision" ]; then
+		. ./provision.sh config.txt
+	elif [ $ACTION == "migrate" ]; then
+		. ./migrate.sh config.txt
+	fi
 
 	exit 0
 fi

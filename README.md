@@ -17,6 +17,7 @@ Ensure the artifacts are located in $USER_HOME/.m2/repository/org/apache/finerac
 
 **- Using Docker-compose**
 1. Run the start-up.sh script to start the microservices
+    (N.B: Make sure your local database instances are down)
     `bash start-up.sh`
 2. Run the shut-down.sh script to shut-down the microservices
     `bash shut-down.sh`

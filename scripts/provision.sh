@@ -73,10 +73,10 @@ function login {
 
     ACCESS_TOKEN=$( curl -s -X POST -H "Content-Type: application/json" -H "User: guest" -H "X-Tenant-Identifier: $tenant" \
        "${IDENTITY_URL}/token?grant_type=password&username=${username}&password=${password}" \
-         | jq --raw-output '.accessToken' )
+        | jq --raw-output '.accessToken' )
 }
 
-function create-microservice {
+function create-application {
     local name="$1"
     local description="$2"
     local vendor="$3"
@@ -88,13 +88,13 @@ function create-microservice {
     echo "Created microservice: $name"
 }
 
-function list-microservices {
+function get-application {
     echo ""
     echo "Microservices: "
     curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/applications | jq '.'
 }
 
-function delete-microservice {
+function delete-application {
     local service_name="$1"
 
     curl -X delete -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/applications/${service_name}
@@ -131,7 +131,7 @@ function create-tenant {
     echo "Create tenant: $database_name"
 }
 
-function list-tenants {
+function get-tenants {
     echo ""
     echo "Tenants: "
     curl -s -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorization: ${TOKEN}" ${PROVISIONER_URL}/tenants | jq '.'
@@ -146,7 +146,7 @@ function assign-identity-ms {
     echo "Assigned identity microservice for tenant $tenant"
 }
 
-function list-tenant-services {
+function get-tenant-services {
     local tenant="$1"
 
     echo ""
@@ -233,7 +233,7 @@ function create-user {
     echo "Created user: $user_identifier"
 }
 
-function list-users {
+function get-users {
     local tenant="$1"
     local user="$2"
 
@@ -279,22 +279,22 @@ function set-application-permission-enabled-for-user {
 
 init-config $1
 auto-seshat
-create-microservice $IDENTITY_MS_NAME $IDENTITY_MS_DESCRIPTION $IDENTITY_MS_VENDOR $IDENTITY_URL
-create-microservice $RHYTHM_MS_NAME $RHYTHM_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
-create-microservice $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
-create-microservice $CUSTOMER_MS_NAME $CUSTOMER_MS_DESCRIPTION $CUSTOMER_MS_VENDOR $CUSTOMER_URL
-create-microservice $LEDGER_MS_NAME $LEDGER_MS_DESCRIPTION $LEDGER_MS_VENDOR $LEDGER_URL
-create-microservice $PORTFOLIO_MS_NAME $PORTFOLIO_MS_DESCRIPTION $PORTFOLIO_MS_VENDOR $PORTFOLIO_URL
-create-microservice $DEPOSIT_MS_NAME $DEPOSIT_MS_DESCRIPTION $DEPOSIT_MS_VENDOR $DEPOSIT_URL
-create-microservice $TELLER_MS_NAME $TELLER_MS_DESCRIPTION $TELLER_MS_VENDOR $TELLER_URL
-create-microservice $REPORT_MS_NAME $REPORT_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
+create-application $IDENTITY_MS_NAME $IDENTITY_MS_DESCRIPTION $IDENTITY_MS_VENDOR $IDENTITY_URL
+create-application $RHYTHM_MS_NAME $RHYTHM_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
+create-application $OFFICE_MS_NAME $OFFICE_MS_DESCRIPTION $OFFICE_MS_VENDOR $OFFICE_URL
+create-application $CUSTOMER_MS_NAME $CUSTOMER_MS_DESCRIPTION $CUSTOMER_MS_VENDOR $CUSTOMER_URL
+create-application $LEDGER_MS_NAME $LEDGER_MS_DESCRIPTION $LEDGER_MS_VENDOR $LEDGER_URL
+create-application $PORTFOLIO_MS_NAME $PORTFOLIO_MS_DESCRIPTION $PORTFOLIO_MS_VENDOR $PORTFOLIO_URL
+create-application $DEPOSIT_MS_NAME $DEPOSIT_MS_DESCRIPTION $DEPOSIT_MS_VENDOR $DEPOSIT_URL
+create-application $TELLER_MS_NAME $TELLER_MS_DESCRIPTION $TELLER_MS_VENDOR $TELLER_URL
+create-application $REPORT_MS_NAME $REPORT_MS_DESCRIPTION $REPORT_MS_VENDOR $REPORT_URL
 
 for TENANT in "${TENANTS[@]}"; do
     echo
-    echo
     echo "Provisioning applications for tenant, ${TENANT}."
-    read -p "Enter a description for the tenant, ${TENANT}: " description
-    create-tenant ${TENANT} "A place to mess around and have fun" "All in one Demo Server" ${TENANT}
+    echo
+    read -p "Enter a name for the tenant, ${TENANT}: " -r name
+    create-tenant ${TENANT} "${name}" "All in one Demo Server" ${TENANT}
     assign-identity-ms ${TENANT}
     login ${TENANT} "antony" $ADMIN_PASSWORD
     create-scheduler-role ${TENANT}
@@ -303,6 +303,7 @@ for TENANT in "${TENANTS[@]}"; do
     update-password ${TENANT} "imhotep" "p4ssw0rd"
     login ${TENANT} "imhotep" "p4ssw0rd"
     provision-app ${TENANT} $RHYTHM_MS_NAME
+    login ${TENANT} "imhotep" "p4ssw0rd"
     set-application-permission-enabled-for-user ${TENANT} $RHYTHM_MS_NAME "identity__v1__app_self" ${TENANT}
     provision-app ${TENANT} $OFFICE_MS_NAME
     provision-app ${TENANT} $LEDGER_MS_NAME
@@ -312,8 +313,11 @@ for TENANT in "${TENANTS[@]}"; do
     provision-app ${TENANT} $DEPOSIT_MS_NAME
     provision-app ${TENANT} $TELLER_MS_NAME
     provision-app ${TENANT} $REPORT_MS_NAME
+
     login ${TENANT} "antony" $ADMIN_PASSWORD
     create-org-admin-role ${TENANT}
     create-user ${TENANT} "antony" "operator" "init1@l23" "orgadmin"
-    login ${TENANT}" "operator" "init1@l"
+    login ${TENANT} "operator" "init1@l"
 done
+
+echo "COMPLETED PROCESS SUCCESSFULLY."
