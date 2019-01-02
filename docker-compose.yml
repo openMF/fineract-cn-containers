@@ -6,12 +6,12 @@ services:
       dockerfile: Dockerfile
     container_name: identity-ms
     environment:
-      eureka.instance.hostname: 172.16.238.2
-      ribbon.listOfServers: 172.16.238.2:9090
-      eureka.client.serviceUrl.defaultZone: http://172.16.238.2:8761/eureka
-      activemq.brokerUrl: tcp://172.16.238.3:61616
-      cassandra.contactPoints: 172.16.238.5:9042
-      mariadb.host: 172.16.238.4
+      eureka.instance.hostname: eureka
+      ribbon.listOfServers: eureka:9090
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka
+      activemq.brokerUrl: tcp://activemq:61616
+      cassandra.contactPoints: cassandra:9042
+      mariadb.host: mariadb
       system.publicKey.timestamp: ${TIMESTAMP}
       system.publicKey.modulus: ${MODULUS}
       system.publicKey.exponent: ${EXPONENT}

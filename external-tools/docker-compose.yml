@@ -48,7 +48,7 @@ services:
     image: cassandra
     container_name: cassandra
     ports:
-      - "9142:9042"
+      - "9042:9042"
     healthcheck:
       test: cqlsh ping -h 172.16.238.5
       interval: 5s
