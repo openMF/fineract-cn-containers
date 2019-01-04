@@ -181,4 +181,4 @@ services:
 networks:
   default:
     external:
-      name: externaltools_app_net
+      name: external-tools_app_net
