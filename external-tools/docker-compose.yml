@@ -15,7 +15,7 @@ services:
       interval: 5s
       retries: 20
     networks:
-      app_net:
+      default:
         ipv4_address: 172.16.238.3
 
   eureka:
@@ -24,7 +24,7 @@ services:
     ports:
       - "8761:8761"
     networks:
-      app_net:
+      default:
         ipv4_address: 172.16.238.2
 
   mariadb:
@@ -41,7 +41,7 @@ services:
       interval: 5s
       retries: 20
     networks:
-      app_net:
+      default:
         ipv4_address: 172.16.238.4
 
   cassandra:
@@ -54,7 +54,7 @@ services:
       interval: 5s
       retries: 20
     networks:
-      app_net:
+      default:
         ipv4_address: 172.16.238.5
     volumes:
       - cassandra-volume:/var/lib/cassandra
@@ -64,9 +64,6 @@ volumes:
   mariadb-volume:
 
 networks:
-  app_net:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
+  default:
+    external:
+      name: externaltools_app_net

@@ -1,8 +1,11 @@
 #!/bin/sh
 
+echo "Create service network"
+docker network create --driver=bridge --subnet=172.16.238.0/24 externaltools_app_net
+
 cd external-tools/
 docker-compose up -d
-  echo "Cassandra is unavailable - sleeping ..."
+echo "Cassandra is unavailable - sleeping ..."
 while ! nc -z 172.16.238.5 9042; do
   sleep 1
 done

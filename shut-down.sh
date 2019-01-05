@@ -5,3 +5,4 @@ docker rm provisioner-ms
 cd external-tools/
 docker-compose down
 cd ..
+docker network rm externaltools_app_net
