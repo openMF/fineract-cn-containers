@@ -13,7 +13,7 @@ cd provisioner-ms-scripts/
 docker build -q -t provisioner:latest .
 docker run -d --name provisioner-ms --env eureka.instance.hostname=172.16.238.2 --env ribbon.listOfServers=172.16.238.2:9090 \
   --env eureka.client.serviceUrl.defaultZone=http://172.16.238.2:8761/eureka --env activemq.brokerUrl=tcp://172.16.238.3:61616 \
-  --env cassandra.contactPoints=172.16.238.5:9042 --env mariadb.host=172.16.238.4 --network external-tools_app_net \
+  --env cassandra.contactPoints=172.16.238.5:9042 --env mariadb.host=172.16.238.4 --network externaltools_app_net \
   --ip 172.16.238.6 provisioner:latest
 cd ..
 
