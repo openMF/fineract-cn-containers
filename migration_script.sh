@@ -1,4 +1,4 @@
-declare -a domain_ms=("provisioner" "identity" "rhythm" "office" "customer" "portfolio" "deposit-account-management" "teller" "reporting" "payroll")
+declare -a domain_ms=("provisioner" "identity" "rhythm" "office" "customer" "portfolio" "deposit-account-management" "teller" "reporting" "payroll" "accounting")
 
 pwd="${PWD}/"
 
