@@ -1,10 +1,7 @@
 version: '3'
 services:
   identity-ms:
-    build:
-      context: ./identity-ms-scripts
-      dockerfile: Dockerfile
-    container_name: identity-ms
+    image: anh3h/fineract-cn-identity:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -15,14 +12,17 @@ services:
       system.publicKey.timestamp: ${TIMESTAMP}
       system.publicKey.modulus: ${MODULUS}
       system.publicKey.exponent: ${EXPONENT}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
     networks:
       default:
         ipv4_address: 172.16.238.7
   rhythm-ms:
-    build:
-      context: ./rhythm-ms-scripts
-      dockerfile: Dockerfile
-    container_name: rhythm-ms
+    image: anh3h/fineract-cn-rhythm:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -33,14 +33,15 @@ services:
       system.publicKey.timestamp: ${TIMESTAMP}
       system.publicKey.modulus: ${MODULUS}
       system.publicKey.exponent: ${EXPONENT}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
     networks:
       default:
         ipv4_address: 172.16.238.8
   office-ms:
-    build:
-      context: ./office-ms-scripts
-      dockerfile: Dockerfile
-    container_name: office-ms
+    image: anh3h/fineract-cn-office:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -55,10 +56,7 @@ services:
       default:
         ipv4_address: 172.16.238.9
   customer-ms:
-    build:
-      context: ./customer-ms-scripts
-      dockerfile: Dockerfile
-    container_name: customer-ms
+    image: anh3h/fineract-cn-customer:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -73,10 +71,7 @@ services:
       default:
         ipv4_address: 172.16.238.10
   ledger-ms:
-    build:
-      context: ./accounting-ms-scripts
-      dockerfile: Dockerfile
-    container_name: ledger-ms
+    image: anh3h/fineract-cn-ledger:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -84,14 +79,14 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
+      system.publicKey.timestamp: ${TIMESTAMP}
+      system.publicKey.modulus: ${MODULUS}
+      system.publicKey.exponent: ${EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.11
   portfolio-ms:
-    build:
-      context: ./portfolio-ms-scripts
-      dockerfile: Dockerfile
-    container_name: portfolio-ms
+    image: anh3h/fineract-cn-portfolio:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -106,10 +101,7 @@ services:
       default:
         ipv4_address: 172.16.238.12
   deposit-account-management-ms:
-    build:
-      context: ./deposit-account-management-ms-scripts
-      dockerfile: Dockerfile
-    container_name: deposit-ms
+    image: anh3h/fineract-cn-deposit:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -124,10 +116,7 @@ services:
       default:
         ipv4_address: 172.16.238.13
   teller-ms:
-    build:
-      context: ./teller-ms-scripts
-      dockerfile: Dockerfile
-    container_name: teller-ms
+    image: anh3h/fineract-cn-teller:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -142,10 +131,7 @@ services:
       default:
         ipv4_address: 172.16.238.14
   report-ms:
-    build:
-      context: ./reporting-ms-scripts
-      dockerfile: Dockerfile
-    container_name: report-ms
+    image: fineract-cn-report:latest
     environment:
       eureka.instance.hostname: eureka
       ribbon.listOfServers: eureka:9090
@@ -159,24 +145,21 @@ services:
     networks:
       default:
         ipv4_address: 172.16.238.15
-  # payroll-ms:
-  #   build:
-  #     context: ./payroll-ms-scripts
-  #     dockerfile: Dockerfile
-  #   container_name: payroll-ms
-  #   environment:
-  #     eureka.instance.hostname: eureka
-  #     ribbon.listOfServers: eureka:9090
-  #     eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka
-  #     activemq.brokerUrl: tcp://activemq:61616
-  #     cassandra.contactPoints: cassandra:9042
-  #     mariadb.host: mariadb
-  #     system.publicKey.timestamp: ${TIMESTAMP}
-  #     system.publicKey.modulus: ${MODULUS}
-  #     system.publicKey.exponent: ${EXPONENT}
-  #   networks:
-  #     default:
-  #       ipv4_address: 172.16.238.16
+  payroll-ms:
+    image: fineract-cn-payroll:latest
+    environment:
+      eureka.instance.hostname: eureka
+      ribbon.listOfServers: eureka:9090
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka
+      activemq.brokerUrl: tcp://activemq:61616
+      cassandra.contactPoints: cassandra:9042
+      mariadb.host: mariadb
+      system.publicKey.timestamp: ${TIMESTAMP}
+      system.publicKey.modulus: ${MODULUS}
+      system.publicKey.exponent: ${EXPONENT}
+    networks:
+      default:
+        ipv4_address: 172.16.238.16
 
 networks:
   default:
