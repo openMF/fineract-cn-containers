@@ -35,20 +35,53 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: docker.io/anh3h/ledger-ms
+        image: docker.io/anh3h/fineract-cn-ledger:latest
         imagePullPolicy: IfNotPresent
         env:
           - name: eureka.instance.hostname
-            value: 35.185.8.176
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: eureka-ip
           - name: ribbon.listOfServers
-            value: 35.185.8.176:9090
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: ribbon-config
           - name: eureka.client.serviceUrl.defaultZone
-            value: http://35.185.8.176:8761/eureka
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: eureka-default
           - name: activemq.brokerUrl
-            value: tcp:// 35.237.151.82:61616
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: activemq-ip
           - name: cassandra.contactPoints
-            value: 35.227.125.206:9042
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: cassandra-ip
           - name: mariadb.host
-            value: 35.196.130.21
+            valueFrom:
+              configMapKeyRef:
+                name: my-config
+                key: mariadb-ip
+          - name: system.publicKey.timestamp
+            valueFrom:
+              configMapKeyRef:
+                key: TIMESTAMP
+                name: secret-config
+          - name: system.publicKey.modulus
+            valueFrom:
+              configMapKeyRef:
+                key: MODULUS
+                name: secret-config
+          - name: system.publicKey.exponent
+            valueFrom:
+              configMapKeyRef:
+                key: EXPONENT
+                name: secret-config
         ports:
           - containerPort: 2025

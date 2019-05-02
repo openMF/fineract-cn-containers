@@ -51,3 +51,4 @@ kubectl apply -f rhythm.yml
 kubectl apply -f office.yml
 kubectl apply -f customer.yml
 kubectl apply -f portfolio.yml
+kubectl apply -f ledger.yml
