@@ -1,6 +1,6 @@
-FineractCN.iml
-src
-.idea/
 *.jar
 .env
 logs/
+**/.gradle
+**/.idea
+**/build/
