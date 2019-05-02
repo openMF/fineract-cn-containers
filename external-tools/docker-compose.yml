@@ -3,7 +3,6 @@ services:
   activemq:
     image: rmohr/activemq:5.14.5
     container_name: activemq
-    restart: always
     ports:
       - "61616:61616"
       - "8161:8161"
@@ -11,48 +10,74 @@ services:
       ACTIVEMQ_CONFIG_MINMEMORY: 512
       ACTIVEMQ_CONFIG_MAXMEMORY: 1024
     healthcheck:
-      test: curl -u admin:admin -s http://172.16.238.3:8161/admin
-      interval: 5s
-      retries: 20
+      test: curl -u admin:admin -s http://localhost:8161/admin || exit 1
+      interval: 1m
+      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
     networks:
       default:
         ipv4_address: 172.16.238.3
 
   eureka:
-    build: ../eureka_server
+    image: anh3h/eureka-server:latest
     container_name: eureka
     ports:
       - "8761:8761"
+    healthcheck:
+      test: curl -f http://localhost:8761 || exit 1
+      interval: 1m
+      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
     networks:
       default:
         ipv4_address: 172.16.238.2
 
   mariadb:
-    image: mariadb
+    image: mariadb:latest
     container_name: mariadb
-    ports:
-      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
     volumes:
       - mariadb-volume:/var/lib/mysql
     healthcheck:
-      test: mysql --user=root --password=mysql -h 172.16.238.4
-      interval: 5s
-      retries: 20
+      test: mysql --user=root --password=mysql -h localhost
+      interval: 1m
+      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
     networks:
       default:
         ipv4_address: 172.16.238.4
 
   cassandra:
-    image: cassandra
+    image: cassandra:latest
     container_name: cassandra
     ports:
       - "9042:9042"
     healthcheck:
-      test: cqlsh ping -h 172.16.238.5
-      interval: 5s
-      retries: 20
+      test: cqlsh ping -h localhost
+      interval: 1m
+      retries: 5
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
     networks:
       default:
         ipv4_address: 172.16.238.5

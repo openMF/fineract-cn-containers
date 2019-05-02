@@ -64,8 +64,8 @@ spec:
         app: mariadb
     spec:
       containers:
-        - image: docker.io/mariadb
-          #imagePullPolicy: Always
+        - image: docker.io/mariadb:latest
+          imagePullPolicy: IfNotPresent
           name: mariadb
           ports:
             - name: mysql
