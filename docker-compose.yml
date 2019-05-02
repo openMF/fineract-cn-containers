@@ -1,5 +1,28 @@
 version: '3'
 services:
+  provisioner-ms:
+    image: anh3h/fineract-cn-provisioner:latest
+    environment:
+      eureka.instance.hostname: eureka
+      ribbon.listOfServers: eureka:9090
+      eureka.client.serviceUrl.defaultZone: http://eureka:8761/eureka
+      activemq.brokerUrl: tcp://activemq:61616
+      cassandra.contactPoints: cassandra:9042
+      mariadb.host: mariadb
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
+      system.privateKey.modulus: ${PRIVATE_KEY_MODULUS}
+      system.privateKey.exponent: ${PRIVATE_KEY_EXPONENT}
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 3
+    networks:
+      default:
+        ipv4_address: 172.16.238.6
   identity-ms:
     image: anh3h/fineract-cn-identity:latest
     environment:
@@ -9,9 +32,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     deploy:
       replicas: 1
       restart_policy:
@@ -30,9 +53,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     deploy:
       replicas: 1
       restart_policy:
@@ -49,9 +72,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.9
@@ -64,9 +87,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.10
@@ -79,9 +102,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.11
@@ -94,9 +117,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.12
@@ -109,9 +132,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.13
@@ -124,9 +147,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.14
@@ -139,9 +162,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.15
@@ -154,9 +177,9 @@ services:
       activemq.brokerUrl: tcp://activemq:61616
       cassandra.contactPoints: cassandra:9042
       mariadb.host: mariadb
-      system.publicKey.timestamp: ${TIMESTAMP}
-      system.publicKey.modulus: ${MODULUS}
-      system.publicKey.exponent: ${EXPONENT}
+      system.publicKey.timestamp: ${PUBLIC_KEY_TIMESTAMP}
+      system.publicKey.modulus: ${PUBLIC_KEY_MODULUS}
+      system.publicKey.exponent: ${PUBLIC_KEY_EXPONENT}
     networks:
       default:
         ipv4_address: 172.16.238.16
