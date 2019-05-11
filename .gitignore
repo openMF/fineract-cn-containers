@@ -1,34 +1,6 @@
-FineractCN.iml
-src
-.idea/
 *.jar
 .env
 logs/
-
-#Server provisioner ignore files
-fineract-cn-server-provisioner/.gradle
-fineract-cn-server-provisioner/.idea
-fineract-cn-server-provisioner/.settings
-fineract-cn-server-provisioner/.project
-fineract-cn-server-provisioner/.classpath
-fineract-cn-server-provisioner/bin/
-fineract-cn-server-provisioner/build/
-fineract-cn-server-provisioner/target/
-fineract-cn-server-provisioner/logs/
-
-# Ignore Gradle GUI config
-fineract-cn-server-provisioner/gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-*.iml
-*.ipr
-*.iws
-*.log
-
-*.toDelete
-
-.DS_Store
-scripts/.DS_Store
-src/.DS_Store
+**/.gradle
+**/.idea
+**/build/
