@@ -12,14 +12,8 @@ done
 echo "Cassandra is up - executing command."
 cd ..
 
-cd fineract-cn-server-provisioner
-./gradlew clean build
-java -jar build/libs/server-provisioner-0.1.0-BUILD-SNAPSHOT.jar
-sed -n -e 's/.*test-logger - system.//p' logs/server-provisioner.log | \
-  sed -e 's/^[ \t]*//' | awk '{print $1"="$2}' | head -5 > ../.env
-rm -rf logs
-cd ..
+wget https://mifos.jfrog.io/mifos/libs-snapshot-local/org/apache/fineract/cn/lang/0.1.0-BUILD-SNAPSHOT/lang-0.1.0-BUILD-SNAPSHOT.jar
+java -cp lang-0.1.0-BUILD-SNAPSHOT.jar org.apache.fineract.cn.lang.security.RsaKeyPairFactory UNIX > .env
 
 docker-compose up -d
-
 echo "Successfully started fineract services."
