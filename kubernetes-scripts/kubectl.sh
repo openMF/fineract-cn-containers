@@ -1,20 +1,16 @@
 #!/bin/sh
 
-# cd kubernetes-scripts
+cd kubernetes-scripts
 echo "Starting ActiveMQ, Eureka, Maria DB and Cassandra ..."
 kubectl apply -f activemq.yml
 kubectl apply -f eureka.yml
 kubectl apply -f mariadb.yml
 kubectl apply -f cassandra.yml
 
-cassandra_ip=$(kubectl describe service cassandra-cluster | grep 'LoadBalancer Ingress' \
-     | grep -Eo '[0-9.]*')
-mariadb_ip=$(kubectl describe service mariadb-cluster | grep 'LoadBalancer Ingress'\
-     | grep -Eo '[0-9.]*')
-eureka_ip=$(kubectl describe service eureka-cluster | grep 'LoadBalancer Ingress'\
-     | grep -Eo '[0-9.]*')
-activemq_ip=$(kubectl describe service activemq-cluster | grep 'LoadBalancer Ingress'\
-     | grep -Eo '[0-9.]*')
+cassandra_ip=""
+mariadb_ip=""
+eureka_ip=""
+activemq_ip=""
 
 echo ""
 echo "Sharing Cassandra, MariaDB, Eureka and Active<Q  IP addresses..."
